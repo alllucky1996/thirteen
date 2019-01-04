@@ -32,4 +32,12 @@ public class Hand extends CardHolder {
         cards.remove(card);
     }
 
+    /**
+     * Check if the hand's size is 13.
+     * @return  If the hand is full
+     */
+    public boolean isFull() {
+        return cards.size() == 13;
+    }
+
 }

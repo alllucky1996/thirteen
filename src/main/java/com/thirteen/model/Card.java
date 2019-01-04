@@ -5,7 +5,7 @@ package com.thirteen.model;
  *
  * @author Michael Kha
  */
-public class Card {
+public class Card implements Comparable<Card> {
 
     /**
      * Suit of this card
@@ -53,6 +53,16 @@ public class Card {
     }
 
     /**
+     * Does this card have the specified rank and suit?
+     * @param rank  Rank to check
+     * @param suit  Suit to check
+     * @return  If both rank and suit are equal
+     */
+    public boolean isRankAndSuit(Rank rank, Suit suit) {
+        return this.rank == rank && this.suit == suit;
+    }
+
+    /**
      * Check if another object is equal to this card.
      * Equal is defined as having the same suit and rank.
      * @param obj   Object to check
@@ -68,6 +78,19 @@ public class Card {
             return suit == other.suit && rank == other.rank;
         }
         return false;
+    }
+
+    /**
+     * Compare this card to another card. First compare the ranks
+     * and if the ranks are equal, then compare the suits.
+     * @param other Other card to compare with
+     * @return  If this card is less than, equal to, or greater than
+     *          return -1, 0, or 1.
+     */
+    @Override
+    public int compareTo(Card other) {
+        int rankCompare = rank.compareTo(other.rank);
+        return rankCompare == 0 ? suit.compareTo(other.suit) : rankCompare;
     }
 
     /**

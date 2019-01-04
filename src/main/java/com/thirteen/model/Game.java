@@ -23,12 +23,13 @@ public class Game {
     private Deck deck;
 
     /**
+     * TODO: initialize to person with Three of Spades
      * Current player whose turn it is
      */
     private Player currentPlayer;
 
     /**
-     *
+     * Track the last turn
      */
     private Turn lastTurn;
 
@@ -54,10 +55,32 @@ public class Game {
             throw new Exception();
         }
         this.players = players;
+        lastTurn = null;
     }
 
     /**
-     *
+     * TODO: called by controller
+     * Start the game by dealing cards to all players
+     * and setting the current player's turn to the person with
+     * a Three of Spades or the lowest value card (when there are less
+     * than four players).
+     */
+    public void init() {
+        // Currently hard coded for 4 players only
+        while (!players[0].isHandFull()) {
+            for (Player player : players) {
+                Card card = dealFromDeck();
+                if (card.isRankAndSuit(Rank.THREE, Suit.SPADES)) {
+                    currentPlayer = player;
+                }
+                player.addToHand(card);
+            }
+        }
+        // Deck should be empty (test this)
+    }
+
+    /**
+     * TODO: called by controller
      * preconditions: deck is not empty; if empty take discard pile and shuffle into deck
      * @return
      */
@@ -66,7 +89,7 @@ public class Game {
     }
 
     /**
-     *
+     * TODO: called by controller
      * preconditions: start of game or discard pile added to deck
      */
     public void shuffleDeck() {

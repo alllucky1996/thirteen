@@ -29,6 +29,11 @@ public class Player {
     private Hand hand;
 
     /**
+     * If this player has passed their turn and must sit out.
+     */
+    private boolean passed;
+
+    /**
      * Create a player with the default name.
      */
     public Player() {
@@ -42,6 +47,7 @@ public class Player {
     public Player(String name) {
         this.name = name;
         this.hand = new Hand(new ArrayList<>());
+        passed = false;
     }
 
     /**
@@ -61,6 +67,21 @@ public class Player {
     }
 
     /**
+     * Set passed to be true.
+     */
+    public void didPass() {
+        passed = true;
+    }
+
+    /**
+     * Has the player passed this turn?
+     * @return
+     */
+    public boolean hasPassed() {
+        return passed;
+    }
+
+    /**
      * Add a card to the player's hand
      * @param card  Card to add
      */
@@ -74,6 +95,23 @@ public class Player {
      */
     public void useInHand(Card card) {
         hand.remove(card);
+    }
+
+    /**
+     * Check if the player's hand is full.
+     * Full is defined as having 13 cards total.
+     * @return If hand is full
+     */
+    public boolean isHandFull() {
+        return hand.isFull();
+    }
+
+    /**
+     * Check if the player's hand is empty.
+     * @return
+     */
+    public boolean isHandEmpty() {
+        return hand.isEmpty();
     }
 
 
