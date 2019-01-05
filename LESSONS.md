@@ -5,3 +5,4 @@ for long switch-case statements.
 * Use comparable in most cases. Comparator is used for unnatural ordering.
 * It is possible to sort using Collections.sort or List.sort
 * The sort method can take in Comparator.naturalOrdering() for a comparator
+* Integer has a built-in static compare method (nice tidbit).
