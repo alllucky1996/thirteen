@@ -34,6 +34,10 @@ public class Move extends CardHolder implements Comparable<Move> {
         play = determinePlay();
     }
 
+    /**
+     * TODO: test heavily
+     * @return
+     */
     public Play determinePlay() {
         // Same some time by not needing to keep checking the size
         switch (cards.size()) {
@@ -58,6 +62,8 @@ public class Move extends CardHolder implements Comparable<Move> {
                         Play.ILLEGAL;
             case 5:
             case 7:
+            case 11:
+            case 13:
                 return !containsRank(Rank.TWO) ?
                         allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
                             Play.ILLEGAL :
@@ -76,12 +82,29 @@ public class Move extends CardHolder implements Comparable<Move> {
                             Play.ILLEGAL :
                         Play.ILLEGAL;
             case 10:
-            case 11:
+                return !containsRank(Rank.TWO) ?
+                        allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
+                            allPairsConsecutiveRank() ? Play.DOUBLE_SEQUENCE :
+                            Play.ILLEGAL :
+                        Play.ILLEGAL;
             case 12:
-            case 13:
-
+                return !containsRank(Rank.TWO) ?
+                        allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
+                            allPairsConsecutiveRank() ? Play.DOUBLE_SEQUENCE :
+                                allTriplesConsecutiveRank() ? Play.TRIPLE_SEQUENCE :
+                                Play.ILLEGAL :
+                        Play.ILLEGAL;
+            default:
+                return Play.ILLEGAL;
         }
-        return null;
+    }
+
+    /**
+     * Get the type of play this move is.
+     * @return
+     */
+    public Play getPlay() {
+        return play;
     }
 
     /**
