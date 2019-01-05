@@ -8,6 +8,14 @@ package com.thirteen.model;
 public enum Play {
     //TODO: determine all possible combinations
     /**
+     * Default type indicating a move is illegal.
+     */
+    ILLEGAL,
+    /**
+     * A pass is defined as not playing any cards.
+     */
+    PASS,
+    /**
      * From lowest to highest value in terms of only plays(without ties).
      * A sequence is synonymous to a straight. A double sequence is a
      * straight containing pairs of the same rank.
@@ -20,6 +28,16 @@ public enum Play {
     SEQUENCE,
     DOUBLE_SEQUENCE,
     /**
-     * Bombs and twos beat out the above.
+     * TODO: fill in
+     * Bombs beat out the above.
+     * The following are bombs.
      */
+    TRIPLE_SEQUENCE
+    /**
+     * TODO: fill in
+     * Instant wins
+     */
+
+
+
 }
