@@ -335,13 +335,16 @@ public class Move extends CardHolder implements Comparable<Move> {
     }
 
     /**
-     * Compare
-     * @param other
-     * @return
+     * Compare this move to another move. First compare the plays
+     * and if the plays are equal, then compare the high cards.
+     * @param other Other move to compare with
+     * @return  If this move is less than, equal to, or greater than
+     *          return -1, 0, or 1.
      */
     @Override
     public int compareTo(Move other) {
-
-        return 0;
+        int playCompare = play.compareTo(other.play);
+        return playCompare != 0 ? playCompare :
+                highCard.compareTo(other.highCard);
     }
 }
