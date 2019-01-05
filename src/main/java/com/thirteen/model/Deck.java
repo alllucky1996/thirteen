@@ -2,7 +2,6 @@ package com.thirteen.model;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * Represents a typical deck of cards. Can also represent

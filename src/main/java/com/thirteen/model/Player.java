@@ -1,6 +1,7 @@
 package com.thirteen.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a player in the game of Thirteen.
