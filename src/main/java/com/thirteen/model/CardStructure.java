@@ -28,4 +28,10 @@ public interface CardStructure {
      */
     boolean isEmpty();
 
+    /**
+     * Appends all of the cards in the specified list to the end of this list.
+     * @param cards  List containing elements to be added to this list
+     */
+    void addAll(List<Card> cards);
+
 }
