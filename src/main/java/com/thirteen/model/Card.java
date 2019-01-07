@@ -18,15 +18,6 @@ public class Card implements Comparable<Card> {
     private Rank rank;
 
     /**
-     * Create a card with no suit or rank.
-     * Used to represent a Joker.
-     */
-    public Card() {
-        this.suit = null;
-        this.rank = null;
-    }
-
-    /**
      * Create a card with a given suit and rank.
      * @param suit  Suit of this card
      * @param rank  Rank of this card
