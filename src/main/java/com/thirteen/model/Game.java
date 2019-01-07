@@ -100,6 +100,9 @@ public class Game extends WinnerTool {
      * @return  If a winner can be declared for this round
      */
     public boolean doesWinnerExist() {
+        if (hasWinner()) {
+            return true;
+        }
         // Compare player with other players
         for (Player player : players) {
             for (Player other : players) {
