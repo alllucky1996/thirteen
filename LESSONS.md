@@ -1,7 +1,8 @@
 Here are noteworthy concepts that I picked up on while working on this project.
+Also known as information found through forums and discussing with people.
 
 Practices Used:
-* Abstraction of the use of a card data structure
+* Abstraction
     * Programming to an interface for the sake of abstraction and DRY principle
     * Defining a concrete implementation of an interface via an abstract class
     * Extending an abstract class with another abstract class for additional concrete methods
