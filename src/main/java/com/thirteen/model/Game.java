@@ -1,5 +1,7 @@
 package com.thirteen.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -10,12 +12,7 @@ import java.util.Stack;
  *
  * @author Michael Kha
  */
-public class Game {
-
-    /**
-     * Players within the game
-     */
-    private Player[] players;
+public class Game extends WinnerTool {
 
     /**
      * The deck of cards
@@ -23,39 +20,38 @@ public class Game {
     private Deck deck;
 
     /**
-     * TODO: initialize to person with Three of Spades
+     * Players within the game
+     */
+    private List<Player> players;
+
+    /**
+     * The rounds played in this game
+     */
+    private List<Round> rounds;
+
+    /**
+     * TODO: remove: responsibility delegated elsewhere
      * Current player whose turn it is
      */
     private Player currentPlayer;
 
     /**
+     * TODO: remove field
      * Track the last turn
      */
     private Turn lastTurn;
 
     /**
-     * Create a new game with four players.
+     * Create a new game with two to four players.
      * @param numPlayers    Number of players (2-4)
-     * @return
      */
     public Game(int numPlayers) {
         deck = new Deck(new Stack<>());
-        players = new Player[numPlayers];
-        for (int i=0; i<players.length; i++) {
-            players[i] = new Player();
+        players = new ArrayList<>();
+        rounds = new ArrayList<>();
+        for (int i=0; i<numPlayers; i++) {
+            players.add(new Player());
         }
-    }
-
-    /**
-     * Create a game
-     * @param players   Players to start a game with
-     */
-    public Game(Player[] players) throws Exception {
-        if (!(players.length >= 2 && players.length <= 4)) {
-            throw new Exception();
-        }
-        this.players = players;
-        lastTurn = null;
     }
 
     /**
@@ -67,7 +63,7 @@ public class Game {
      */
     public void init() {
         // Currently hard coded for 4 players only
-        while (!players[0].isHandFull()) {
+        while (!players.get(0).isHandFull()) {
             for (Player player : players) {
                 Card card = dealFromDeck();
                 if (card.isRankAndSuit(Rank.THREE, Suit.SPADES)) {
@@ -76,8 +72,10 @@ public class Game {
                 player.addToHand(card);
             }
         }
-        // Deck should be empty (test this)
+        // TODO: Deck should be empty (test this)
     }
+
+
 
     /**
      * TODO: called by controller
@@ -94,6 +92,25 @@ public class Game {
      */
     public void shuffleDeck() {
         deck.shuffle();
+    }
+
+    /**
+     * Determine if a winner exists by looking at each player's hand
+     * and seeing if other players have passed.
+     * @return  If a winner can be declared for this round
+     */
+    public boolean doesWinnerExist() {
+        // Compare player with other players
+        for (Player player : players) {
+            for (Player other : players) {
+                if (player != other) {
+                    if (player.isHandEmpty() && !other.isHandEmpty()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }
