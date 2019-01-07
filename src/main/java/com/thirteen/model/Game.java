@@ -75,7 +75,19 @@ public class Game extends WinnerTool {
         // TODO: Deck should be empty (test this)
     }
 
+    /**
+     *
+     *
+     */
+    public void start() {
+        Round round;
+        while (!hasWinner()) {
+            // Start a new round
+            round = new Round(players, new ArrayList<>(), currentPlayer);
+            rounds.add(round);
+        }
 
+    }
 
     /**
      * TODO: called by controller
