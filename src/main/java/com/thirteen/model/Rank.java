@@ -21,45 +21,6 @@ public enum Rank {
     TWO;
 
     /**
-     * TODO: remove and use ordinal()
-     * Evaluate the value of the rank to an integer.
-     * @param rank  Rank to evaluate
-     * @return  Integer value of the rank
-     */
-    public static int evaluate(Rank rank) {
-        switch (rank) {
-            case TWO:
-                return 13;
-            case ACE:
-                return 12;
-            case KING:
-                return 11;
-            case QUEEN:
-                return 10;
-            case JACK:
-                return 9;
-            case TEN:
-                return 8;
-            case NINE:
-                return 7;
-            case EIGHT:
-                return 6;
-            case SEVEN:
-                return 5;
-            case SIX:
-                return 4;
-            case FIVE:
-                return 3;
-            case FOUR:
-                return 2;
-            case THREE:
-                return 1;
-            default:
-                return 0;
-        }
-    }
-
-    /**
      * Replaces the original enum's to string to only have the first letter
      * capitalized.
      * @return  String with only the first letter capitalized
