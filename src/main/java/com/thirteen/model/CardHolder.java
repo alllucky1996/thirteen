@@ -36,12 +36,21 @@ public abstract class CardHolder implements CardStructure {
     }
 
     /**
-     * If there are no more cards in the list
+     * If there are no more cards in the list.
      * @return  Is the list empty?
      */
     @Override
     public boolean isEmpty() {
         return cards.isEmpty();
+    }
+
+    /**
+     * Appends all of the cards in the specified list to the end of this list.
+     * @param cards  List containing elements to be added to this list
+     */
+    @Override
+    public void addAll(List<Card> cards) {
+        this.cards.addAll(cards);
     }
 
 }
