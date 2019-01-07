@@ -6,7 +6,8 @@ import java.util.List;
 
 /**
  * Represents a move made in the game consisting of a collection of cards.
- * The validity/legality of a move is dependent on the previous turn's move
+ * The validity/legality of a move is dependent on the previous turn's move.
+ * TODO: clean up class
  *
  * @author Michael Kha
  */
@@ -82,6 +83,7 @@ public class Move extends CardHolder implements Comparable<Move> {
                             Play.ILLEGAL :
                         Play.ILLEGAL;
             case 10:
+                // TODO: move case to above cases 6 and 8
                 return !containsRank(Rank.TWO) ?
                         allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
                             allPairsConsecutiveRank() ? Play.DOUBLE_SEQUENCE :
