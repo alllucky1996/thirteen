@@ -52,7 +52,7 @@ public class Player {
     }
 
     /**
-     * Get the player's name
+     * Get the player's name.
      * @return  Player's name
      */
     public String getName() {
@@ -60,7 +60,7 @@ public class Player {
     }
 
     /**
-     * Get the player's hand
+     * Get the player's hand.
      * @return  Player's name
      */
     public Hand getHand() {
@@ -68,15 +68,16 @@ public class Player {
     }
 
     /**
-     * Set passed to be true.
+     * Set passed to the given state.
+     * @param passed    State to set to
      */
-    public void didPass() {
-        passed = true;
+    public void setPassed(boolean passed) {
+        this.passed = passed;
     }
 
     /**
      * Has the player passed this turn?
-     * @return
+     * @return  If player has passed
      */
     public boolean hasPassed() {
         return passed;
@@ -101,7 +102,7 @@ public class Player {
     /**
      * Check if the player's hand is full.
      * Full is defined as having 13 cards total.
-     * @return If hand is full
+     * @return  If hand is full
      */
     public boolean isHandFull() {
         return hand.isFull();
@@ -109,7 +110,7 @@ public class Player {
 
     /**
      * Check if the player's hand is empty.
-     * @return
+     * @return  If hand is empty
      */
     public boolean isHandEmpty() {
         return hand.isEmpty();
