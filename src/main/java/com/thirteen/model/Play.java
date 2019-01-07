@@ -37,8 +37,47 @@ public enum Play {
      * Instant wins
      */
     DRAGON,
-    FOUR_TWOS
+    FOUR_TWOS;
 
+    /**
+     * Capitalize the first letter in a string and change all other
+     * letters to lowercase.
+     * @param string    String to perform on
+     * @return  Formatted string
+     */
+    private String capitalizeFirstLetter(String string) {
+        return string.substring(0, 1).toUpperCase()
+                + string.substring(1).toLowerCase();
+    }
 
+    /**
+     * Format the enum's string to title case.
+     * @return  String in title case format
+     */
+    @Override
+    public String toString() {
+        String original = super.toString();
+        String[] parts = original.split("_");
+        switch (parts.length) {
+            case 1:
+                return capitalizeFirstLetter(original);
+            case 2:
+            case 4:
+                String s = "";
+                for (String part : parts) {
+                    if (part.length() > 3) {
+                        s += capitalizeFirstLetter(part);
+                    } else {
+                        s += part.toLowerCase();
+                    }
+                    if (!part.equals(parts[part.length()-1])) {
+                        s += " ";
+                    }
+                }
+                return s;
+            default:
+                return null;
+        }
+    }
 
 }
