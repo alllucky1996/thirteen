@@ -18,13 +18,23 @@ public class Round {
     private List<Turn> turns;
 
     /**
-     * Create a round upon the first turn being made.
-     * @param turns Any empty list
-     * @param turn  Starting turn for the round
+     * The starting player of the round
      */
-    public Round(List<Turn> turns, Turn turn) {
+    private Player starter;
+
+    /**
+     * The winning player of the round
+     */
+    private Player winner;
+
+    /**
+     * Create a round with no turns and a starting player.
+     * @param turns     Any empty list
+     * @param starter   Starting player
+     */
+    public Round(List<Turn> turns, Player starter) {
         this.turns = turns;
-        turns.add(turn);
+        this.starter = starter;
     }
 
     /**
@@ -36,11 +46,50 @@ public class Round {
     }
 
     /**
-     * Get the last turn made this round,
-     * preconditions: turns is not empty
+     * Get the last turn made or null if no turns have occurred.
      * @return  The last turn made
      */
     public Turn getLastTurn() {
-        return turns.get(turns.size()-1);
+        return turns.isEmpty() ? null : turns.get(turns.size()-1);
+    }
+
+    /**
+     * Get the starting player
+     * @return  The starting player
+     */
+    public Player getStarter() {
+        return starter;
+    }
+
+    /**
+     * TODO: implement this
+     * @return  If a winner can be declared for this round
+     */
+    public boolean doesWinnerExist() {
+        return true;
+    }
+
+    /**
+     * Set the winner to be the specified player
+     * @param winner    Player that won
+     */
+    public void setWinner(Player winner) {
+        this.winner = winner;
+    }
+
+    /**
+     * Get the winner of the round
+     * @return  The winning player
+     */
+    public Player getWinner() {
+        return winner;
+    }
+
+    /**
+     * Has a winner been declared?
+     * @return  If a winning player exists
+     */
+    public boolean hasWinner() {
+        return winner != null;
     }
 }
