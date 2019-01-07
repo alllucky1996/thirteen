@@ -24,19 +24,20 @@ public enum Play {
     SINGLE,
     PAIR,
     TRIPLE,
-    FOUR_OF_A_KIND,
+    FOUR_OF_A_KIND,//beats any single 2
     SEQUENCE,
-    DOUBLE_SEQUENCE,
+    DOUBLE_SEQUENCE,//sequence of 4 pairs beats pair of twos, sequence of 5 pairs beats 3 twos
     /**
      * TODO: fill in
      * Bombs beat out the above.
      * The following are bombs.
      */
-    TRIPLE_SEQUENCE
+    TRIPLE_SEQUENCE,
     /**
-     * TODO: fill in
      * Instant wins
      */
+    DRAGON,
+    FOUR_TWOS
 
 
 
