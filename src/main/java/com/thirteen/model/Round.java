@@ -10,7 +10,12 @@ import java.util.List;
  *
  * @author Michael Kha
  */
-public class Round {
+public class Round extends WinnerTool {
+
+    /**
+     * Players within the game
+     */
+    private List<Player> players;
 
     /**
      * Turns that occurred within the round
@@ -18,23 +23,20 @@ public class Round {
     private List<Turn> turns;
 
     /**
-     * The starting player of the round
+     * The current player of the round
      */
-    private Player starter;
-
-    /**
-     * The winning player of the round
-     */
-    private Player winner;
+    private Player current;
 
     /**
      * Create a round with no turns and a starting player.
+     * @param players   Players playing the game
      * @param turns     Any empty list
      * @param starter   Starting player
      */
-    public Round(List<Turn> turns, Player starter) {
+    public Round(List<Player> players, List<Turn> turns, Player starter) {
+        this.players = players;
         this.turns = turns;
-        this.starter = starter;
+        current = starter;
     }
 
     /**
@@ -54,42 +56,31 @@ public class Round {
     }
 
     /**
-     * Get the starting player
-     * @return  The starting player
+     * Get the current player
+     * @return  The current player
      */
-    public Player getStarter() {
-        return starter;
+    public Player getCurrent() {
+        return current;
     }
 
     /**
-     * TODO: implement this
+     * Determine if a winner exists by looking at each player's hand
+     * and seeing if other players have passed.
      * @return  If a winner can be declared for this round
      */
     public boolean doesWinnerExist() {
-        return true;
+        // Compare player with other players
+        for (Player player : players) {
+            for (Player other : players) {
+                if (player != other) {
+                    // TODO: check if player needs to not have passed
+                    if (player.isHandEmpty() && other.hasPassed()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
-    /**
-     * Set the winner to be the specified player
-     * @param winner    Player that won
-     */
-    public void setWinner(Player winner) {
-        this.winner = winner;
-    }
-
-    /**
-     * Get the winner of the round
-     * @return  The winning player
-     */
-    public Player getWinner() {
-        return winner;
-    }
-
-    /**
-     * Has a winner been declared?
-     * @return  If a winning player exists
-     */
-    public boolean hasWinner() {
-        return winner != null;
-    }
 }
