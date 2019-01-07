@@ -4,41 +4,22 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Represents a typical deck of cards. Can also represent
- * a deck of cards including Jokers.
+ * Represents a typical 52-card deck. Cards can be dealt and
+ * shuffled.
  *
  * @author Michael Kha
  */
 public class Deck extends CardHolder {
 
     /**
-     * Number of Jokers to add to a deck
-     */
-    private static final int NUM_JOKERS = 2;
-
-    /**
-     * Create a standard 52-card deck.
+     * Create a standard 52-card deck with a given number of cards.
+     * @param cards List of cards to refer to as the deck
      */
     public Deck(List<Card> cards) {
-        this(cards, false);
-    }
-
-    /**
-     * Create a deck with a given number of cards.
-     * @param addJoker  If this deck will include jokers.
-     */
-    public Deck(List<Card> cards, boolean addJoker) {
         this.cards = cards;
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 cards.add(new Card(suit, rank));
-            }
-        }
-        if (addJoker) {
-            int currentAmount = 0;
-            while (currentAmount < NUM_JOKERS) {
-                cards.add(new Card());
-                currentAmount++;
             }
         }
     }
