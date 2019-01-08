@@ -31,7 +31,7 @@ public class DeckTest {
     @BeforeEach
     public void setup() {
         cards = new Stack<>();
-        CuT = new Deck(cards, false);
+        CuT = new Deck(cards);
     }
 
     /**
@@ -44,13 +44,16 @@ public class DeckTest {
     }
 
     /**
+     * @deprecated
      * Test that the deck with jokers is created consistently.
      */
-    @Test
+    //@Test
     public void testDeckWithJokers() {
+        /*
         CuT = new Deck(cards, true);
         Deck hasJokersToo = new Deck(cards, true);
         assertEquals(hasJokersToo, CuT);
+        */
     }
 
     /**
