@@ -70,4 +70,16 @@ public class PileTest {
         assertEquals(CuT.size(), deck.size());
     }
 
+    /**
+     * Test that the pile is cleared.
+     */
+    @Test
+    public void testClear() {
+        CuT.addAll(deck.cards);
+        assertTrue(!CuT.isEmpty());
+        CuT.clear();
+        assertTrue(CuT.isEmpty());
+    }
+
+
 }

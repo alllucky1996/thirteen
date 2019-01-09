@@ -47,4 +47,14 @@ public class HandTest {
         assertFalse(CuT.isFull());
     }
 
+    /**
+     * Test that the hand is cleared.
+     */
+    @Test
+    public void testClear() {
+        assertTrue(!CuT.isEmpty());
+        CuT.clear();
+        assertTrue(CuT.isEmpty());
+    }
+
 }
