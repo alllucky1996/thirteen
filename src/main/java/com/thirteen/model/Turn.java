@@ -54,4 +54,5 @@ public class Turn implements Comparable<Turn> {
     public int compareTo(Turn other) {
         return move.compareTo(other.move);
     }
+
 }
