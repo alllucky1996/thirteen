@@ -63,7 +63,7 @@ public class DeckTest {
     public void testShuffle() {
         Deck unshuffledDeck = new Deck(cards);
         CuT.shuffle();
-        assertTrue(CuT.size() == unshuffledDeck.size());
+        assertEquals(CuT.size(), unshuffledDeck.size());
         for (Card card : unshuffledDeck.cards) {
             assertTrue(CuT.getCards().contains(card));
         }

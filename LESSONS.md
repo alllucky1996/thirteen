@@ -9,6 +9,8 @@ Practices Used:
 * Dependency injection of data structures
     * Makes it easier for testing
     * Can use mock objects more easily
+* Law of Demeter
+    * Adding methods to reduce chain of dependencies
 
 Lessons Learned (Mistakes Were Made):
 * Java
@@ -19,5 +21,7 @@ Lessons Learned (Mistakes Were Made):
     * It is possible to sort using Collections.sort or List.sort
     * The sort method can take in Comparator.naturalOrdering() for a comparator
     * Integer has a built-in static compare method (nice tidbit).
+* JUnit
+    * Some documentation for assertions are wrong. The parameters for assertions should be actual then expected.
 * Maven
     * Use RELEASE or LATEST for dependency versions
