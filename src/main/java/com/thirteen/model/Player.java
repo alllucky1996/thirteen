@@ -92,10 +92,10 @@ public class Player {
     }
 
     /**
-     * Use a card in the player's hand.
-     * @param card  Card to use
+     * Remove a card from the player's hand.
+     * @param card  Card to remove
      */
-    public void useInHand(Card card) {
+    public void removeFromHand(Card card) {
         hand.remove(card);
     }
 
