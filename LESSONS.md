@@ -25,3 +25,4 @@ Lessons Learned (Mistakes Were Made):
     * Some documentation for assertions are wrong. The parameters for assertions should be actual then expected.
 * Maven
     * Use RELEASE or LATEST for dependency versions
+    * To add dependencies in IntelliJ see https://www.jetbrains.com/help/idea/2016.2/resolving-references-with-maven.html
