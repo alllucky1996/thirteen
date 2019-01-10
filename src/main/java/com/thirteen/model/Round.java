@@ -40,12 +40,38 @@ public class Round extends WinnerTool {
     }
 
     /**
+     * Create a turn given a move.
+     * @param move  Move to use in the turn
+     * @return  A turn with the player that made a move
+     */
+    public Turn createTurn(Move move) {
+        return new Turn(current, move);
+    }
+
+    /**
+     * Add the specified turn to the list of turns.
+     * @param turn  Turn to add
+     */
+    public void addTurn(Turn turn) {
+        turns.add(turn);
+    }
+
+    /**
      * Get all the turns made this round.
      * @return  All the turns made
      */
     public List<Turn> getTurns() {
         return turns;
     }
+
+    /**
+     * Get the size of the list of turns.
+     * @return  Size of the list of turns
+     */
+    public int size() {
+        return turns.size();
+    }
+
 
     /**
      * Get the last turn made or null if no turns have occurred.
@@ -74,16 +100,27 @@ public class Round extends WinnerTool {
         }
         // Compare player with other players
         for (Player player : players) {
-            for (Player other : players) {
-                if (player != other) {
-                    // TODO: check if player needs to not have passed
-                    if (player.isHandEmpty() && other.hasPassed()) {
-                        return true;
-                    }
-                }
+            if (!player.hasPassed() && haveAllOtherPlayersPassed(player)) {
+                return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Check if all other players have passed.
+     * @param player    Player to exclude
+     * @return  If all other players have passed or not
+     */
+    public boolean haveAllOtherPlayersPassed(Player player) {
+        for (Player other : players) {
+            if (player != other) {
+                if (!other.hasPassed()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
