@@ -86,7 +86,31 @@ public class Game extends WinnerTool {
             round = new Round(players, new ArrayList<>(), currentPlayer);
             rounds.add(round);
         }
+    }
 
+    /**
+     *
+     * preconditions: current player has been updated
+     * @return
+     */
+    public Round createRound() {
+        return new Round(players, new ArrayList<>(), currentPlayer);
+    }
+
+    /**
+     * Update the current player to the last round's winner.
+     * @return  The next current player
+     */
+    public Player updateCurrentPlayer() {
+        Round round = getLastRound();
+        currentPlayer = round.getCurrent();
+        currentPlayer = getLastRound().getWinner();
+        return currentPlayer;
+    }
+
+    public Round getLastRound() {
+        int size = rounds.size();
+        return size == 0 ? null : rounds.get(size - 1);
     }
 
     /**
@@ -126,6 +150,22 @@ public class Game extends WinnerTool {
             }
         }
         return false;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public List<Round> getRounds() {
+        return rounds;
     }
 
 }
