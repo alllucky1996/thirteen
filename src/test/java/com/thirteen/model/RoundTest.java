@@ -39,6 +39,34 @@ public class RoundTest {
     }
 
     /**
+     * Test that the winner can be set.
+     */
+    @Test
+    public void testSetWinner() {
+        assertNull(CuT.getWinner());
+        CuT.setWinner(CuT.getCurrent());
+        assertEquals(CuT.getWinner(), CuT.getCurrent());
+    }
+
+    /**
+     * Test that the winner can be retrieved.
+     */
+    @Test
+    public void testGetWinner() {
+        assertNull(CuT.getWinner());
+    }
+
+    /**
+     * Test that the round has a winner.
+     */
+    @Test
+    public void testHasWinner() {
+        CuT.setWinner(CuT.getCurrent());
+        assertTrue(CuT.hasWinner());
+    }
+
+
+    /**
      * Test that creating a turn returns the expected turn.
      */
     @Test
