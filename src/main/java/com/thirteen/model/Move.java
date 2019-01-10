@@ -31,7 +31,7 @@ public class Move extends CardHolder implements Comparable<Move> {
     public Move(List<Card> cards) {
         cards.sort(Comparator.naturalOrder());
         this.cards = cards;
-        highCard = cards.get(cards.size() - 1);
+        highCard = cards.isEmpty() ? null : cards.get(cards.size() - 1);
         play = determinePlay();
     }
 
@@ -347,6 +347,7 @@ public class Move extends CardHolder implements Comparable<Move> {
     public int compareTo(Move other) {
         int playCompare = play.compareTo(other.play);
         return playCompare != 0 ? playCompare :
+                play == Play.PASS && other.play == Play.PASS ? 0 :
                 highCard.compareTo(other.highCard);
     }
 }
