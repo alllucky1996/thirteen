@@ -179,11 +179,21 @@ public class MoveTest {
     }
 
     /**
-     *
+     * Test that for each possible play, the correct play is assigned
+     * and returned.
      */
     @Test
     public void testGetPlay() {
-
+        assertEquals(pass.getPlay(), Play.PASS);
+        assertEquals(single.getPlay(), Play.SINGLE);
+        assertEquals(pair.getPlay(), Play.PAIR);
+        assertEquals(triple.getPlay(), Play.TRIPLE);
+        assertEquals(quads.getPlay(), Play.FOUR_OF_A_KIND);
+        assertEquals(sequence.getPlay(), Play.SEQUENCE);
+        assertEquals(doubleSequence.getPlay(), Play.DOUBLE_SEQUENCE);
+        assertEquals(tripleSequence.getPlay(), Play.TRIPLE_SEQUENCE);
+        assertEquals(dragon.getPlay(), Play.DRAGON);
+        assertEquals(quadTwos.getPlay(), Play.FOUR_TWOS);
     }
 
     /**
