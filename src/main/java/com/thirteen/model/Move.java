@@ -5,7 +5,6 @@ import java.util.List;
 /**
  * Represents a move made in the game consisting of a collection of cards.
  * The validity/legality of a move is dependent on the previous turn's move.
- * TODO: clean up class
  *
  * @author Michael Kha
  */
@@ -34,7 +33,7 @@ public class Move extends CardHolder implements Comparable<Move> {
 
     /**
      * Get the type of play this move is.
-     * @return
+     * @return  The play
      */
     public Play getPlay() {
         return play;
@@ -42,16 +41,17 @@ public class Move extends CardHolder implements Comparable<Move> {
 
     /**
      * Get the highest value card in the move.
-     * @return  Get the highestValued value card
+     * @return  The highestValued value card
      */
     public Card getHighCard() {
         return highCard;
     }
 
     /**
+     * TODO: see if needed
      * Compare the highest value card to another card.
      * Used for comparing with another highest value card in another move.
-     * @param other
+     * @param other Other card to compare to
      * @return
      */
     public int compareHighestValue(Card other) {
