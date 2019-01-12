@@ -116,8 +116,8 @@ public class Card implements Comparable<Card> {
      */
     @Override
     public int compareTo(Card other) {
-        int rankCompare = rank.compareTo(other.rank);
-        return rankCompare == 0 ? suit.compareTo(other.suit) : rankCompare;
+        int rankCompare = rank.convertCompareTo(other.rank);
+        return rankCompare == 0 ? suit.convertCompareTo(other.suit) : rankCompare;
     }
 
     /**

@@ -126,9 +126,11 @@ public class CardTest {
         Card same = CuT;
         Card sameRank = new Card(Suit.SPADES, rank);
         Card higherRank = new Card(suit, Rank.TWO);
+        Card higherRankAndSuit = new Card(Suit.HEARTS, Rank.TWO);
         assertEquals(CuT.compareTo(same), 0);
         assertEquals(CuT.compareTo(sameRank), 1);
         assertEquals(CuT.compareTo(higherRank), -1);
+        assertEquals(CuT.compareTo(higherRankAndSuit), -1);
     }
 
     /**
