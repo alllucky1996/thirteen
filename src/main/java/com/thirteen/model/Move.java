@@ -71,6 +71,7 @@ public class Move extends CardHolder implements Comparable<Move> {
                         Play.ILLEGAL;
             case 6:
             case 8:
+            case 10:
                 return !containsRank(Rank.TWO) ?
                         allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
                             allPairsConsecutiveRank() ? Play.DOUBLE_SEQUENCE :
@@ -80,13 +81,6 @@ public class Move extends CardHolder implements Comparable<Move> {
                 return !containsRank(Rank.TWO) ?
                         allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
                             allTriplesConsecutiveRank() ? Play.TRIPLE_SEQUENCE :
-                            Play.ILLEGAL :
-                        Play.ILLEGAL;
-            case 10:
-                // TODO: move case to above cases 6 and 8
-                return !containsRank(Rank.TWO) ?
-                        allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
-                            allPairsConsecutiveRank() ? Play.DOUBLE_SEQUENCE :
                             Play.ILLEGAL :
                         Play.ILLEGAL;
             case 12:
@@ -128,49 +122,6 @@ public class Move extends CardHolder implements Comparable<Move> {
     }
 
     /**
-     * TODO: remove?
-     * TODO: decide to use a list or just use null
-     * A pass is a move defined with having no cards being played.
-     * @return  If the list of cards is empty.
-     */
-    public boolean isPass() {
-        return isEmpty();
-    }
-
-    /**
-     * TODO: remove?
-     * @return
-     */
-    public boolean isSingle() {
-        return compareSize(1);
-    }
-
-    /**
-     * TODO: remove?
-     * @return
-     */
-    public boolean isPair() {
-        return compareSize(2) && allCardsSameRank(cards);
-    }
-
-    /**
-     * TODO: remove?
-     * @return
-     */
-    public boolean isTriple() {
-        return compareSize(3) && allCardsSameRank(cards);
-    }
-
-    /**
-     * Helper method
-     * @param expected
-     * @return
-     */
-    public boolean compareSize(int expected) {
-        return expected == size();
-    }
-
-    /**
      *
      * @return
      */
@@ -209,50 +160,10 @@ public class Move extends CardHolder implements Comparable<Move> {
      */
     public boolean allPairsConsecutiveRank() {
         return allPartitionsConsecutiveRank(2);
-        /*
-        List<Card[]> pairs = partitionToPairs();
-        int checkCounter = cards.get(0).getRankOrdinal();
-        boolean isFirstPair = true;
-        for (Card[] pair : pairs) {
-            if (!pair[0].isSameRank(pair[1])) {
-                return false;
-            }
-            if (!isFirstPair) {
-                if (checkCounter+1 != pair[0].getRankOrdinal()) {
-                    return false;
-                }
-            } else {
-                isFirstPair = false;
-            }
-            checkCounter++;
-        }
-        return true;
-        */
     }
 
     public boolean allTriplesConsecutiveRank() {
         return allPartitionsConsecutiveRank(3);
-    }
-
-    /**
-     * TODO: delete
-     * preconditions: even number of cards
-     * @return
-     */
-    private List<Card[]> partitionToPairs() {
-        List<Card[]> pairs = new ArrayList<>();
-        int count = 0;
-        Card[] cardArray = new Card[2];
-        for (Card card : cards) {
-            if (count % 2 == 1) {
-                cardArray[1] = card;
-                pairs.add(cardArray);
-            } else {
-                cardArray[0] = card;
-            }
-            count++;
-        }
-        return pairs;
     }
 
     /**
@@ -285,23 +196,6 @@ public class Move extends CardHolder implements Comparable<Move> {
      * preconditions:
      * @return
      */
-    /*
-    private List<Card[]> partitionTo(int size) {
-        List<Card[]> parts = new ArrayList<>();
-        int count = 0;
-        Card[] cardArray = new Card[size];
-        for (Card card : cards) {
-            int mod = count % size;
-            if (mod == 2) {
-                cardArray[mod] = card;
-                parts.add(cardArray);
-            } else {
-                cardArray[mod] = card;
-            }
-            count++;
-        }
-        return parts;
-    }*/
     private List<List<Card>> partitionTo(int size) {
         List<List<Card>> parts = new ArrayList<>();
         int count = 0;
@@ -350,4 +244,5 @@ public class Move extends CardHolder implements Comparable<Move> {
                 play == Play.PASS && other.play == Play.PASS ? 0 :
                 highCard.compareTo(other.highCard);
     }
+
 }
