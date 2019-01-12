@@ -6,78 +6,65 @@ package com.thirteen.model;
  * @author Michael Kha
  */
 public enum Play {
-    //TODO: determine all possible combinations
     /**
      * Default type indicating a move is illegal.
      */
-    ILLEGAL,
+    ILLEGAL("Illegal"),
     /**
      * A pass is defined as not playing any cards.
      */
-    PASS,
+    PASS("Pass"),
     /**
      * From lowest to highest value in terms of only plays(without ties).
      * A sequence is synonymous to a straight. A double sequence is a
      * straight containing pairs of the same rank.
      * Sequences cannot contain two's.
      */
-    SINGLE,
-    PAIR,
-    TRIPLE,
-    FOUR_OF_A_KIND,//beats any single 2
-    SEQUENCE,
-    DOUBLE_SEQUENCE,//sequence of 4 pairs beats pair of twos, sequence of 5 pairs beats 3 twos
+    SINGLE("Single"),
+    PAIR("Pair"),
+    TRIPLE("Triple"),
+    FOUR_OF_A_KIND("Four of a Kind"),//beats any single 2
+    SEQUENCE("Sequence"),
+    DOUBLE_SEQUENCE("Sequence of Pairs"),//sequence of 4 pairs beats pair of twos, sequence of 5 pairs beats 3 twos
     /**
-     * TODO: fill in
      * Bombs beat out the above.
      * The following are bombs.
      */
-    TRIPLE_SEQUENCE,
+    TRIPLE_SEQUENCE("Sequence of Triples"),
     /**
      * Instant wins
      */
-    DRAGON,
-    FOUR_TWOS;
+    DRAGON("Dragon"),
+    FOUR_TWOS("Four of a Kind, Twos");
 
     /**
-     * Capitalize the first letter in a string and change all other
-     * letters to lowercase.
-     * @param string    String to perform on
-     * @return  Formatted string
+     * Name of the play
      */
-    private String capitalizeFirstLetter(String string) {
-        return string.substring(0, 1).toUpperCase()
-                + string.substring(1).toLowerCase();
+    private final String name;
+
+    /**
+     * Create a play with a name.
+     * @param name  Name to give
+     */
+    Play(String name) {
+        this.name = name;
     }
 
     /**
-     * Format the enum's string to title case.
-     * @return  String in title case format
+     * Get the name of the play.
+     * @return  Name of the play
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Returns the name of the play.
+     * @return  Name of the play
      */
     @Override
     public String toString() {
-        String original = super.toString();
-        String[] parts = original.split("_");
-        switch (parts.length) {
-            case 1:
-                return capitalizeFirstLetter(original);
-            case 2:
-            case 4:
-                String s = "";
-                for (String part : parts) {
-                    if (part.length() > 3) {
-                        s += capitalizeFirstLetter(part);
-                    } else {
-                        s += part.toLowerCase();
-                    }
-                    if (!part.equals(parts[part.length()-1])) {
-                        s += " ";
-                    }
-                }
-                return s;
-            default:
-                return null;
-        }
+        return getName();
     }
 
 }
