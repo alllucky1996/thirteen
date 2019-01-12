@@ -140,7 +140,6 @@ public final class MoveEvaluator {
     }
 
     /**
-     * FIXME
      * Are all partitions of some size consecutively ranked?
      * preconditions: cards are in order
      * @param cards List of cards
@@ -158,16 +157,15 @@ public final class MoveEvaluator {
                 if (checkCounter+1 != part.get(0).getRankOrdinal()) {
                     return false;
                 }
+                checkCounter++;
             } else {
                 isFirstPartition = false;
             }
-            checkCounter++;
         }
         return true;
     }
 
     /**
-     * FIXME
      * Partition a list of cards into a list of partitions of cards of
      * a given size.
      * @param cards List of cards
@@ -200,7 +198,7 @@ public final class MoveEvaluator {
      * @param rank  Rank to check for
      * @return  If the cards contain the specified rank
      */
-    static boolean containsRank(List<Card> cards, Rank rank) {
+    private static boolean containsRank(List<Card> cards, Rank rank) {
         for (Card card : cards) {
             if (card.getRank() == rank) {
                 return true;
