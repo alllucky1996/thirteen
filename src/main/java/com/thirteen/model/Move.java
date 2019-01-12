@@ -50,17 +50,6 @@ public class Move extends CardHolder implements Comparable<Move> {
     }
 
     /**
-     * TODO: see if needed
-     * Compare the highest value card to another card.
-     * Used for comparing with another highest value card in another move.
-     * @param other Other card to compare to
-     * @return
-     */
-    public int compareHighestValue(Card other) {
-        return highCard.compareTo(other);
-    }
-
-    /**
      * Compare this move to another move. First compare the plays
      * and if the plays are equal, then compare the high cards.
      * @param other Other move to compare with

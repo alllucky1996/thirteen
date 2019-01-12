@@ -217,14 +217,6 @@ public class MoveTest {
      *
      */
     @Test
-    public void testCompareHighestValue() {
-
-    }
-
-    /**
-     *
-     */
-    @Test
     public void testCompareTo() {
 
     }
