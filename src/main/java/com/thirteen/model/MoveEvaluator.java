@@ -44,7 +44,8 @@ public final class MoveEvaluator {
                                 Play.ILLEGAL;
 
             case 4:
-                return allCardsSameRank(cards) ? Play.FOUR_OF_A_KIND :
+                return allCardsSameRank(cards) ? containsRank(cards, Rank.TWO) ?
+                        Play.FOUR_TWOS : Play.FOUR_OF_A_KIND :
                         !containsRank(cards, Rank.TWO) ?
                                 allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
                                         Play.ILLEGAL :
@@ -52,7 +53,6 @@ public final class MoveEvaluator {
             case 5:
             case 7:
             case 11:
-            case 13:
                 return !containsRank(cards, Rank.TWO) ?
                         allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
                                 Play.ILLEGAL :
@@ -78,6 +78,9 @@ public final class MoveEvaluator {
                                         allTriplesConsecutiveRank(cards) ? Play.TRIPLE_SEQUENCE :
                                                 Play.ILLEGAL :
                         Play.ILLEGAL;
+            case 13:
+                return allCardsConsecutiveRank(cards) ? Play.DRAGON :
+                                Play.ILLEGAL;
             default:
                 return Play.ILLEGAL;
         }
@@ -137,6 +140,7 @@ public final class MoveEvaluator {
     }
 
     /**
+     * FIXME
      * Are all partitions of some size consecutively ranked?
      * preconditions: cards are in order
      * @param cards List of cards
@@ -163,6 +167,7 @@ public final class MoveEvaluator {
     }
 
     /**
+     * FIXME
      * Partition a list of cards into a list of partitions of cards of
      * a given size.
      * @param cards List of cards
