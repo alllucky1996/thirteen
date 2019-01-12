@@ -1,5 +1,6 @@
 package com.thirteen.model;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class Move extends CardHolder implements Comparable<Move> {
      * @param cards List of cards that compose a move.
      */
     public Move(List<Card> cards) {
+        cards.sort(Comparator.naturalOrder());
         this.cards = cards;
         highCard = cards.isEmpty() ? null : cards.get(cards.size() - 1);
         play = MoveEvaluator.determinePlay(cards);
