@@ -1,7 +1,5 @@
 package com.thirteen.model;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -19,7 +17,7 @@ public class Move extends CardHolder implements Comparable<Move> {
     private Play play;
 
     /**
-     * The highest value card within the move.
+     * The highest value card within the move
      */
     private Card highCard;
 
@@ -29,70 +27,9 @@ public class Move extends CardHolder implements Comparable<Move> {
      * @param cards List of cards that compose a move.
      */
     public Move(List<Card> cards) {
-        cards.sort(Comparator.naturalOrder());
         this.cards = cards;
         highCard = cards.isEmpty() ? null : cards.get(cards.size() - 1);
-        play = determinePlay();
-    }
-
-    /**
-     * TODO: test heavily
-     * @return
-     */
-    public Play determinePlay() {
-        // Same some time by not needing to keep checking the size
-        switch (cards.size()) {
-            case 0:
-                return Play.PASS;
-            case 1:
-                return Play.SINGLE;
-            case 2:
-                return allCardsSameRank(cards) ? Play.PAIR : Play.ILLEGAL;
-            case 3:
-                return allCardsSameRank(cards) ? Play.TRIPLE :
-                        !containsRank(Rank.TWO) ?
-                            allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
-                            Play.ILLEGAL :
-                        Play.ILLEGAL;
-
-            case 4:
-                return allCardsSameRank(cards) ? Play.FOUR_OF_A_KIND :
-                        !containsRank(Rank.TWO) ?
-                            allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
-                            Play.ILLEGAL :
-                        Play.ILLEGAL;
-            case 5:
-            case 7:
-            case 11:
-            case 13:
-                return !containsRank(Rank.TWO) ?
-                        allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
-                            Play.ILLEGAL :
-                        Play.ILLEGAL;
-            case 6:
-            case 8:
-            case 10:
-                return !containsRank(Rank.TWO) ?
-                        allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
-                            allPairsConsecutiveRank() ? Play.DOUBLE_SEQUENCE :
-                            Play.ILLEGAL :
-                        Play.ILLEGAL;
-            case 9:
-                return !containsRank(Rank.TWO) ?
-                        allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
-                            allTriplesConsecutiveRank() ? Play.TRIPLE_SEQUENCE :
-                            Play.ILLEGAL :
-                        Play.ILLEGAL;
-            case 12:
-                return !containsRank(Rank.TWO) ?
-                        allCardsConsecutiveRank(cards) ? Play.SEQUENCE :
-                            allPairsConsecutiveRank() ? Play.DOUBLE_SEQUENCE :
-                                allTriplesConsecutiveRank() ? Play.TRIPLE_SEQUENCE :
-                                Play.ILLEGAL :
-                        Play.ILLEGAL;
-            default:
-                return Play.ILLEGAL;
-        }
+        play = MoveEvaluator.determinePlay(cards);
     }
 
     /**
@@ -119,115 +56,6 @@ public class Move extends CardHolder implements Comparable<Move> {
      */
     public int compareHighestValue(Card other) {
         return highCard.compareTo(other);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean allCardsSameRank(List<Card> cards) {
-        for (int i=0; i<cards.size(); i++) {
-            for (int j=i+1; j<cards.size(); j++) {
-                if (!cards.get(i).isSameRank(cards.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     *
-     * preconditions: cards are in order and size is greater than 1.
-     * @return
-     */
-    public boolean allCardsConsecutiveRank(List<Card> cards) {
-        // Initialize to the first card in the list
-        int checkCounter = cards.get(0).getRankOrdinal();
-        for (int i=1; i<cards.size(); i++) {
-            if (checkCounter+1 != cards.get(i).getRankOrdinal()) {
-                return false;
-            }
-            checkCounter++;
-        }
-        return true;
-    }
-
-    /**
-     *
-     * preconditions: cards are in order, even number of cards
-     * @return
-     */
-    public boolean allPairsConsecutiveRank() {
-        return allPartitionsConsecutiveRank(2);
-    }
-
-    public boolean allTriplesConsecutiveRank() {
-        return allPartitionsConsecutiveRank(3);
-    }
-
-    /**
-     *
-     * preconditions: cards are in order
-     * @return
-     */
-    public boolean allPartitionsConsecutiveRank(int size) {
-        List<List<Card>> partitions = partitionTo(size);
-        int checkCounter = cards.get(0).getRankOrdinal();
-        boolean isFirstPartition = true;
-        for (List<Card> part : partitions) {
-            if (!allCardsSameRank(part)) {
-                return false;
-            }
-            if (!isFirstPartition) {
-                if (checkCounter+1 != part.get(0).getRankOrdinal()) {
-                    return false;
-                }
-            } else {
-                isFirstPartition = false;
-            }
-            checkCounter++;
-        }
-        return true;
-    }
-
-    /**
-     *
-     * preconditions:
-     * @return
-     */
-    private List<List<Card>> partitionTo(int size) {
-        List<List<Card>> parts = new ArrayList<>();
-        int count = 0;
-        List<Card> part = null;
-        for (Card card : cards) {
-            int mod = count % size;
-            if (mod == 0) {
-                part = new ArrayList<>();
-                part.add(card);
-            } else {
-                part.add(card);
-                if (mod == size-1) {
-                    parts.add(part);
-                }
-            }
-            count++;
-        }
-        return parts;
-    }
-
-    /**
-     * Check if the cards in the move contain a specific rank.
-     * @param rank  Rank to check for
-     * @return  If the cards contain the specified rank
-     */
-    public boolean containsRank(Rank rank) {
-        for (Card card : cards) {
-            if (card.getRank() == rank) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
