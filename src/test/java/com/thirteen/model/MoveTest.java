@@ -197,11 +197,20 @@ public class MoveTest {
     }
 
     /**
-     *
+     * Test that the proper high card is returned.
      */
     @Test
     public void testGetHighCard() {
         assertNull(pass.getHighCard());
+        assertEquals(single.getHighCard(), deck.cards.get(0));
+        assertEquals(pair.getHighCard(), pile.cards.get(1));
+        assertEquals(triple.getHighCard(), pile.cards.get(2));
+        assertEquals(quads.getHighCard(), pile.cards.get(3));
+        assertEquals(sequence.getHighCard(), deck.cards.get(3));
+        assertEquals(doubleSequence.getHighCard(), deck.cards.get(15));
+        assertEquals(tripleSequence.getHighCard(), deck.cards.get(28));
+        assertEquals(dragon.getHighCard(), deck.cards.get(12));
+        assertEquals(quadTwos.getHighCard(), pile.cards.get(pile.size() - 1));
     }
 
     /**
