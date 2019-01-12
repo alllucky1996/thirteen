@@ -21,4 +21,14 @@ public enum Suit {
         String original = super.toString();
         return original.substring(0, 1) + original.substring(1).toLowerCase();
     }
+
+    /**
+     * Convert the enum compareTo method to return -1, 0, or 1.
+     * @return  The integer comparison of the enum compare
+     */
+    public int convertCompareTo(Suit other) {
+        int compare = compareTo(other);
+        return Integer.compare(compare, 0);
+    }
+
 }
