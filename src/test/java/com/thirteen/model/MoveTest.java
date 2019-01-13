@@ -4,13 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit test suite for the move and move evaluator class.
+ * Unit test suite for the move class.
  *
  * @author Michael Kha
  */
@@ -160,6 +161,16 @@ public class MoveTest {
     }
 
     /**
+     * Create a move from any number of cards. For easier creation of moves.
+     * @param cards Card params
+     * @return  Move made from cards
+     */
+    private Move createMove(Card... cards) {
+        List<Card> cardList = new ArrayList<>(Arrays.asList(cards));
+        return new Move(cardList);
+    }
+
+    /**
      * Setup the objects before each test
      */
     @BeforeEach
@@ -214,11 +225,43 @@ public class MoveTest {
     }
 
     /**
-     *
+     * Test that the comparison made is correct.
      */
     @Test
     public void testCompareTo() {
-
+        assertEquals(single.compareTo(createMove(deck.cards.get(1))), -1);
+        assertEquals(pair.compareTo(createMove(
+                pile.cards.get(1), pile.cards.get(2))), -1);
+        assertEquals(triple.compareTo(createMove(
+                pile.cards.get(1), pile.cards.get(2), pile.cards.get(3))), -1);
+        assertEquals(quads.compareTo(createMove(
+                pile.cards.get(4), pile.cards.get(5), pile.cards.get(6),
+                pile.cards.get(7))), -1);
+        assertEquals(sequence.compareTo(createMove(
+                deck.cards.get(3), deck.cards.get(4), deck.cards.get(5),
+                deck.cards.get(6))), -1);
+        assertEquals(doubleSequence.compareTo(createMove(
+                deck.cards.get(1), deck.cards.get(2), deck.cards.get(3),
+                deck.cards.get(14), deck.cards.get(15), deck.cards.get(16))),
+                -1);
+        assertEquals(tripleSequence.compareTo(createMove(
+                deck.cards.get(1), deck.cards.get(2), deck.cards.get(3),
+                deck.cards.get(14), deck.cards.get(15), deck.cards.get(16),
+                deck.cards.get(27), deck.cards.get(28), deck.cards.get(29))),
+                -1);
+        assertEquals(dragon.compareTo(createMove(
+                deck.cards.get(13), deck.cards.get(14), deck.cards.get(15),
+                deck.cards.get(16), deck.cards.get(17), deck.cards.get(18),
+                deck.cards.get(19), deck.cards.get(20), deck.cards.get(21),
+                deck.cards.get(22), deck.cards.get(23), deck.cards.get(24),
+                deck.cards.get(25))), -1);
+        assertEquals(dragon.compareTo(createMove(
+                deck.cards.get(13), deck.cards.get(14), deck.cards.get(15),
+                deck.cards.get(16), deck.cards.get(17), deck.cards.get(18),
+                deck.cards.get(19), deck.cards.get(20), deck.cards.get(21),
+                deck.cards.get(22), deck.cards.get(23), deck.cards.get(24),
+                deck.cards.get(25))), -1);
+        assertEquals(dragon.compareTo(quadTwos), -1);
     }
 
 }
