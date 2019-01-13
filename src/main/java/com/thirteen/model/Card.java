@@ -44,30 +44,11 @@ public class Card implements Comparable<Card> {
     }
 
     /**
-     * TODO: see if needed
-     * Get the ordinal value of the suit.
-     * @return  The ordinal value
-     */
-    public int getSuitOrdinal() {
-        return suit.ordinal();
-    }
-
-    /**
      * Get the ordinal value of the rank.
      * @return  The ordinal value
      */
     public int getRankOrdinal() {
         return rank.ordinal();
-    }
-
-    /**
-     * TODO: see if needed
-     * Does the given card have the same suit as this card?
-     * @param card  Card to check
-     * @return  If the suits are the same
-     */
-    public boolean isSameSuit(Card card) {
-        return suit == card.suit;
     }
 
     /**
