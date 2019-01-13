@@ -59,6 +59,15 @@ public enum Play {
     }
 
     /**
+     * Convert the enum compareTo method to return -1, 0, or 1.
+     * @return  The integer comparison of the enum compare
+     */
+    public int convertCompareTo(Play other) {
+        int compare = compareTo(other);
+        return Integer.compare(compare, 0);
+    }
+
+    /**
      * Returns the name of the play.
      * @return  Name of the play
      */
