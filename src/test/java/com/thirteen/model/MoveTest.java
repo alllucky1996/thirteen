@@ -255,12 +255,6 @@ public class MoveTest {
                 deck.cards.get(19), deck.cards.get(20), deck.cards.get(21),
                 deck.cards.get(22), deck.cards.get(23), deck.cards.get(24),
                 deck.cards.get(25))), -1);
-        assertEquals(dragon.compareTo(createMove(
-                deck.cards.get(13), deck.cards.get(14), deck.cards.get(15),
-                deck.cards.get(16), deck.cards.get(17), deck.cards.get(18),
-                deck.cards.get(19), deck.cards.get(20), deck.cards.get(21),
-                deck.cards.get(22), deck.cards.get(23), deck.cards.get(24),
-                deck.cards.get(25))), -1);
         assertEquals(dragon.compareTo(quadTwos), -1);
     }
 
