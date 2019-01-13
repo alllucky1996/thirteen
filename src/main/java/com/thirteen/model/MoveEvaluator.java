@@ -20,7 +20,6 @@ public final class MoveEvaluator {
     }
 
     /**
-     * TODO: test heavily
      * Determines the type of play given a list of cards.
      * @param cards List of cards
      * @return  The play the cards represent
@@ -28,7 +27,7 @@ public final class MoveEvaluator {
     static Play determinePlay(List<Card> cards) {
         // First sort the cards
         cards.sort(Comparator.naturalOrder());
-        // Same some time by not needing to keep checking the size
+        // Save some time by not needing to keep checking the size
         switch (cards.size()) {
             case 0:
                 return Play.PASS;
