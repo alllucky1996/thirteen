@@ -61,6 +61,7 @@ public class Move extends CardHolder implements Comparable<Move> {
     public int compareTo(Move other) {
         int playCompare = play.convertCompareTo(other.play);
         return playCompare != 0 ? playCompare :
+                play == Play.ILLEGAL ? -1 : other.play == Play.ILLEGAL ? 1 :
                 play == Play.PASS && other.play == Play.PASS ? 0 :
                 highCard.compareTo(other.highCard);
     }
