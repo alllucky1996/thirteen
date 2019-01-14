@@ -1,5 +1,5 @@
-Guidelines:
+#Contributing
 
-Setting Up:
+##Guidelines:
 
 Commonly Asked Questions:
