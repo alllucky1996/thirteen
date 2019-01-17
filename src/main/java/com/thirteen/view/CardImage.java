@@ -7,6 +7,12 @@ import javafx.scene.image.Image;
 import java.io.File;
 import java.util.HashMap;
 
+/**
+ * Enum representing card image assets. Contains all possible
+ * types of cards.
+ *
+ * @author Michael Kha
+ */
 public enum CardImage {
     CARD_BACK(null, null, "card_back.png"),
     THREE_OF_SPADES(Rank.THREE, Suit.SPADES, "3_of_spades.png"),
@@ -62,14 +68,37 @@ public enum CardImage {
     TWO_OF_DIAMONDS(Rank.TWO, Suit.DIAMONDS, "2_of_diamonds.png"),
     TWO_OF_HEARTS(Rank.TWO, Suit.HEARTS, "2_of_hearts.png");
 
+    /**
+     * Path name where the images are located
+     */
     private static final String PATH_NAME = "src/main/resources/img/card/";
 
+    /**
+     * Map used to access the associated image
+     */
     private final HashMap<Enum[], Image> CARD_IMAGES = new HashMap<>();
 
+    /**
+     * Unique enum array consisting of a rank and suit
+     */
     private Enum[] rankAndSuit;
+
+    /**
+     * Rank of the image
+     */
     private Rank rank;
+
+    /**
+     * Suit of the image
+     */
     private Suit suit;
 
+    /**
+     * Creates a card image given a rank and suit as well as the image name.
+     * @param rank      Rank of card
+     * @param suit      Suit of card
+     * @param imageName Image nam
+     */
     CardImage(Rank rank, Suit suit, String imageName) {
         this.rank = rank;
         this.suit = suit;
@@ -78,14 +107,26 @@ public enum CardImage {
         CARD_IMAGES.put(rankAndSuit, image);
     }
 
+    /**
+     * Get the rank.
+     * @return  The rank
+     */
     public Rank getRank() {
         return rank;
     }
 
+    /**
+     * Get the suit.
+     * @return  The suit
+     */
     public Suit getSuit() {
         return suit;
     }
 
+    /**
+     * Get the image contained in the map.
+     * @return  The image associated with the enum
+     */
     public Image getImage() {
         return CARD_IMAGES.get(rankAndSuit);
     }
