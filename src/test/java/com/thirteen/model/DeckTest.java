@@ -44,19 +44,6 @@ public class DeckTest {
     }
 
     /**
-     * @deprecated
-     * Test that the deck with jokers is created consistently.
-     */
-    //@Test
-    public void testDeckWithJokers() {
-        /*
-        CuT = new Deck(cards, true);
-        Deck hasJokersToo = new Deck(cards, true);
-        assertEquals(hasJokersToo, CuT);
-        */
-    }
-
-    /**
      * Test that the order of the cards is different.
      */
     @Test
@@ -80,6 +67,20 @@ public class DeckTest {
         int sizeAfter = CuT.size();
         assertEquals(firstCard, dealtCard);
         assertEquals(size - 1, sizeAfter);
+    }
+
+    /**
+     * Test that adding cards from another card holder functions as expected.
+     */
+    @Test
+    public void testAddAll() {
+        Pile pile = new Pile(new Stack<>());
+        while (!CuT.isEmpty()) {
+            pile.add(CuT.dealACard());
+        }
+        assertTrue(CuT.isEmpty());
+        CuT.addAll(pile);
+        assertTrue(!CuT.isEmpty());
     }
 
     /**

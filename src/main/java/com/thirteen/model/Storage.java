@@ -3,17 +3,17 @@ package com.thirteen.model;
 import java.util.List;
 
 /**
- * Represents a pile of cards.
+ * Represents a storage of cards.
  *
  * @author Michael Kha
  */
-public class Pile extends CardModifier {
+public class Storage extends CardHolder {
 
     /**
-     * Create a pile of cards.
+     * Create a storage of cards.
      * @param cards List of cards to refer to as the pile
      */
-    public Pile(List<Card> cards) {
+    public Storage(List<Card> cards) {
         this.cards = cards;
     }
 

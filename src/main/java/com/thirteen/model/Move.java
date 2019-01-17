@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Michael Kha
  */
-public class Move extends Pile implements Comparable<Move> {
+public class Move extends Storage implements Comparable<Move> {
 
     /**
      * The type of play this move is

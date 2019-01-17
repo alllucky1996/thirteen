@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Michael Kha
  */
-public class Deck extends Pile {
+public class Deck extends Storage {
 
     /**
      * Create a standard 52-card deck with a given number of cards.
@@ -36,6 +36,14 @@ public class Deck extends Pile {
      */
     public Card dealACard() {
         return cards.remove(0);
+    }
+
+    /**
+     * Add all cards from a card holder.
+     * @param cardHolder    A card holder
+     */
+    public void addAll(CardHolder cardHolder) {
+        cards.addAll(cardHolder.cards);
     }
 
     /**
