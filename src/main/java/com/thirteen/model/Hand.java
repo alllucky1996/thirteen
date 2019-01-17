@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author Michael Kha
  */
-public class Hand extends CardUpdater {
+public class Hand extends Pile {
 
     /**
      * The maximum number of cards in the hand
@@ -19,7 +19,7 @@ public class Hand extends CardUpdater {
      * @param cards List of cards to refer to as the hand
      */
     public Hand(List<Card> cards) {
-        this.cards = cards;
+        super(cards);
     }
 
     /**
