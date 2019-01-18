@@ -9,14 +9,14 @@ import java.util.List;
  *
  * @author Michael Kha
  */
-public class Deck extends Storage {
+public class Deck extends CardHolder {
 
     /**
      * Create a standard 52-card deck with a given number of cards.
      * @param cards List of cards to refer to as the deck
      */
     public Deck(List<Card> cards) {
-        super(cards);
+        this.cards = cards;
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 cards.add(new Card(suit, rank));

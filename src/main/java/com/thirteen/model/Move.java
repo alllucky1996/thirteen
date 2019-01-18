@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Michael Kha
  */
-public class Move extends Storage implements Comparable<Move> {
+public class Move extends CardHolder implements Comparable<Move> {
 
     /**
      * The type of play this move is
@@ -27,7 +27,7 @@ public class Move extends Storage implements Comparable<Move> {
      * @param cards List of cards that compose a move.
      */
     public Move(List<Card> cards) {
-        super(cards);
+        this.cards = cards;
         cards.sort(Comparator.naturalOrder());
         play = MoveEvaluator.determinePlay(cards);
         highCard = cards.isEmpty() || play == Play.ILLEGAL ? null :
