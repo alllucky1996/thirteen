@@ -4,10 +4,12 @@ import javafx.scene.image.ImageView;
 
 public interface CardView {
 
-    double IMAGE_HEIGHT = 726;
+    double CARD_HEIGHT = 726;
 
-    double IMAGE_WIDTH = 500;
+    double CARD_WIDTH = 500;
 
-    ImageView createImageView(CardImage cardImage);
+    static ImageView createImageView(CardImage cardImage) {
+        return new ImageView(cardImage.getImage());
+    }
 
 }
