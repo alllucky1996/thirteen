@@ -8,6 +8,11 @@ package com.thirteen.model;
 public class Card implements Comparable<Card> {
 
     /**
+     * ID composed of rank and suit
+     */
+    private CardID ID;
+
+    /**
      * Suit of this card
      */
     private Suit suit;
@@ -23,8 +28,17 @@ public class Card implements Comparable<Card> {
      * @param rank  Rank of this card
      */
     public Card(Suit suit, Rank rank) {
+        ID = new CardID(rank, suit);
         this.suit = suit;
         this.rank = rank;
+    }
+
+    /**
+     * Get the card ID composed of rank and suit.
+     * @return  Card ID
+     */
+    public CardID getID() {
+        return ID;
     }
 
     /**
