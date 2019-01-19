@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
-public class HandPane extends HBox {
+public class HandPane extends HBox implements ThirteenView {
 
     private static final double MAX_WIDTH = 700;
 
@@ -18,6 +18,7 @@ public class HandPane extends HBox {
             // FIXME: Java 11 runtime exception :( using Java 9 for now
             children.add(new CardButton(CardImage.CARD_IMAGES.get(card.getID())));
         }
+        setPadding(DEFAULT_INSETS);
     }
 
 }
