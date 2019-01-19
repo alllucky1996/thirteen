@@ -6,6 +6,7 @@ package com.thirteen.model;
  * @author Michael Kha
  */
 public enum Rank {
+    BACK,
     THREE,
     FOUR,
     FIVE,

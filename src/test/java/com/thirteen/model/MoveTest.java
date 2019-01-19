@@ -44,8 +44,12 @@ public class MoveTest {
     private Pile createPile() {
         List<Card> stack = new Stack<>();
         for (Rank rank : Rank.values()) {
-            for (Suit suit : Suit.values()) {
-                stack.add(new Card(suit, rank));
+            if (rank != Rank.BACK) {
+                for (Suit suit : Suit.values()) {
+                    if (suit != Suit.BACK) {
+                        stack.add(new Card(suit, rank));
+                    }
+                }
             }
         }
         return new Pile(stack);

@@ -17,9 +17,20 @@ public class Deck extends CardHolder {
      */
     public Deck(List<Card> cards) {
         this.cards = cards;
+        init();
+    }
+
+    /**
+     * Initialize the deck with the possible cards.
+     */
+    private void init() {
         for (Suit suit : Suit.values()) {
-            for (Rank rank : Rank.values()) {
-                cards.add(new Card(suit, rank));
+            if (suit != Suit.BACK) {
+                for (Rank rank : Rank.values()) {
+                    if (rank != Rank.BACK) {
+                        cards.add(new Card(suit, rank));
+                    }
+                }
             }
         }
     }
