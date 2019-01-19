@@ -20,6 +20,9 @@ public interface ThirteenView {
             new Background(new BackgroundFill(Color.GREEN.brighter(),
                     CornerRadii.EMPTY, Insets.EMPTY));
 
-
+    static void setDefSize(Region region, double width, double height) {
+        region.setMinSize(width, height);
+        region.setMaxSize(width, height);
+    }
 
 }
