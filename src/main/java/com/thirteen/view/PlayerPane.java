@@ -23,6 +23,7 @@ public class PlayerPane extends GridPane implements ThirteenView {
     private final Text indicator;
 
     PlayerPane(String player) {
+        // TODO: change text depending on game state
         // text about whose turn it is: "NAME's Turn"
         turn = new Text();
         turn.setText(String.format(PLAYER_TURN, player));
@@ -85,6 +86,7 @@ public class PlayerPane extends GridPane implements ThirteenView {
 
     private Button createButton(String text) {
         Button button = new Button(text);
+        // TODO: add observers to enable buttons
         //button.setDisable(true);
         return button;
     }
@@ -106,6 +108,7 @@ public class PlayerPane extends GridPane implements ThirteenView {
         passAlert.getButtonTypes().clear();
         passAlert.getButtonTypes().addAll(cancel, submit);
 
+        // TODO
         // Get result from alert
         Optional<ButtonType> option = passAlert.showAndWait();
         ButtonType actual = option.orElse(null);
