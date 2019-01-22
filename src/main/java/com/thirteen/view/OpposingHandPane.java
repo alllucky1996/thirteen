@@ -27,16 +27,32 @@ public class OpposingHandPane extends Pane implements CardView, ThirteenView {
         CardID cardBack = new CardID(Rank.BACK, Suit.BACK);
         cardNumInfo = new Text();
         cardNumInfo.setText(hand.size() + " CARDS");
-        cardNumInfo.setLayoutX(DEFAULT_X_POS * hand.size());
+        cardNumInfo.setLayoutX(DEFAULT_X_POS * (hand.size() - 1) / 2);
         cardNumInfo.setLayoutY(DEFAULT_Y_POS);
+        cardNumInfo.setVisible(false);
         children.add(cardNumInfo);
         for (int i = 0; i < hand.size(); i++) {
             ImageView imageView = createImageView(cardBack);
             imageView.setLayoutX(DEFAULT_X_POS * i);
             children.add(imageView);
         }
-
+        setMouseEvents();
         setPadding(DEFAULT_INSETS);
+    }
+
+    private void setMouseEvents() {
+        setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cardNumInfo.setVisible(true);
+            }
+        });
+        setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cardNumInfo.setVisible(false);
+            }
+        });
     }
 
     private ImageView createImageView(CardID cardID) {
