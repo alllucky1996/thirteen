@@ -1,10 +1,9 @@
 package com.thirteen.view;
 
 import com.thirteen.model.Hand;
-import javafx.geometry.Pos;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
-public class TablePane extends BorderPane {
+public class TablePane extends Pane {
 
     // TODO: change to different pane/layout
     TablePane(Hand... hands) {
@@ -14,18 +13,25 @@ public class TablePane extends BorderPane {
         }
         int count = 0;
         while (count != handPanes.length) {
+            getChildren().add(handPanes[count]);
             switch (count) {
                 case 0:
-                    setCenter(handPanes[count]);
-                    setAlignment(handPanes[count], Pos.BOTTOM_CENTER);
+                    handPanes[count].setLayoutX(0);
+                    handPanes[count].setLayoutY(200);
+                    //setCenter(handPanes[count]);
+                    //setAlignment(handPanes[count], Pos.BOTTOM_CENTER);
                     break;
                 case 1:
-                    setLeft(handPanes[count]);
-                    setAlignment(handPanes[count], Pos.BOTTOM_RIGHT);
+                    handPanes[count].setLayoutX(-100);
+                    handPanes[count].setLayoutY(300);
+                    //setLeft(handPanes[count]);
+                    //setAlignment(handPanes[count], Pos.BOTTOM_RIGHT);
                     break;
                 case 2:
-                    setRight(handPanes[count]);
-                    setAlignment(handPanes[count], Pos.BOTTOM_LEFT);
+                    handPanes[count].setLayoutX(100);
+                    handPanes[count].setLayoutY(300);
+                    //setRight(handPanes[count]);
+                    //setAlignment(handPanes[count], Pos.BOTTOM_LEFT);
                     break;
             }
             count++;
