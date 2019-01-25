@@ -7,6 +7,8 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * A toggle button representing a clickable card.
+ *
+ * @author Michael Kha
  */
 public class CardButton extends ToggleButton implements CardView {
 
@@ -80,6 +82,10 @@ public class CardButton extends ToggleButton implements CardView {
                 if (!isSelected()) {
                     imageView.setFitWidth(DEFAULT_WIDTH);
                     imageView.setFitHeight(DEFAULT_HEIGHT);
+                }
+                if (isSelected()) {
+                    imageView.setFitWidth(SELECT_WIDTH);
+                    imageView.setFitHeight(SELECT_HEIGHT);
                 }
             }
         });
