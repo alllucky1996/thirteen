@@ -21,6 +21,8 @@ Lessons Learned (Mistakes Were Made):
     * It is possible to sort using Collections.sort or List.sort
     * The sort method can take in Comparator.naturalOrdering() for a comparator
     * Integer has a built-in static compare method (nice tidbit).
+* JavaFX
+    * Resizing requires setting the min/pref/max size
 * JUnit
     * Some documentation for assertions are wrong. The parameters for assertions should be actual then expected.
 * Maven
