@@ -6,10 +6,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * TODO: document
+ * A toggle button representing a clickable card.
  */
 public class CardButton extends ToggleButton implements CardView {
 
+    /**
+     * Width and height of card constants used to represent state
+     */
     private static final double HOVER_WIDTH = CARD_WIDTH / 6;
 
     private static final double HOVER_HEIGHT = CARD_HEIGHT / 6;
@@ -22,10 +25,21 @@ public class CardButton extends ToggleButton implements CardView {
 
     private static final double DEFAULT_HEIGHT = CARD_HEIGHT / 10;
 
+    /**
+     * TODO: see if field is needed
+     * CardImage used to represent the button
+     */
     private CardImage cardImage;
 
+    /**
+     * ImageView to display the CardImage
+     */
     private ImageView imageView;
 
+    /**
+     * Create a card button given a card image.
+     * @param cardImage     Card image representing a single card
+     */
     public CardButton(CardImage cardImage) {
         imageView = CardView.createImageView(cardImage);
         imageView.setFitWidth(DEFAULT_WIDTH);
@@ -35,6 +49,11 @@ public class CardButton extends ToggleButton implements CardView {
         setMouseEvents();
     }
 
+    /**
+     * Set the mouse events of the card button. Mouse events
+     * consisting of clicking and hovering, change the size of the button.
+     * By default, a toggle button is toggled when clicked.
+     */
     private void setMouseEvents() {
         setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
