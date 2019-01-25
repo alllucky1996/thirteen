@@ -2,6 +2,9 @@ package com.thirteen.view;
 
 import javafx.scene.image.ImageView;
 
+/**
+ * TODO: document
+ */
 public interface CardView {
 
     double CARD_HEIGHT = 726;

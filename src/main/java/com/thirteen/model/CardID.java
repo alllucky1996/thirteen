@@ -1,5 +1,9 @@
 package com.thirteen.model;
 
+/**
+ * TODO: make enum possibly
+ * TODO: document
+ */
 public class CardID {
 
     private Rank rank;

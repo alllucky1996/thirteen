@@ -5,6 +5,9 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * TODO: document
+ */
 public class CardButton extends ToggleButton implements CardView {
 
     private static final double HOVER_WIDTH = CARD_WIDTH / 6;

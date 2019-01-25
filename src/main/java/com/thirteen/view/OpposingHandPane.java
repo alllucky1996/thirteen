@@ -9,6 +9,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+/**
+ * TODO: document
+ */
 public class OpposingHandPane extends Pane implements CardView, ThirteenView {
 
     private static final double DEFAULT_WIDTH = CARD_WIDTH / 14;

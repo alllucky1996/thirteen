@@ -3,6 +3,9 @@ package com.thirteen.view;
 import com.thirteen.model.Hand;
 import javafx.scene.layout.Pane;
 
+/**
+ * TODO: document
+ */
 public class TablePane extends Pane {
 
     TablePane(Hand... hands) {

@@ -11,6 +11,9 @@ import javafx.scene.text.Text;
 
 import java.util.Optional;
 
+/**
+ * TODO: document
+ */
 public class PlayerPane extends GridPane implements ThirteenView {
 
     private static final String PLAYER_TURN = "%s's Turn";

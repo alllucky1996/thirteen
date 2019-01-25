@@ -5,6 +5,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+/**
+ * TODO: document
+ */
 public interface ThirteenView {
 
     Insets DEFAULT_INSETS = new Insets(15);

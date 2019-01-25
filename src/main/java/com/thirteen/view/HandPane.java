@@ -6,6 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
+/**
+ * TODO: document
+ */
 public class HandPane extends HBox implements ThirteenView {
 
     private static final double MAX_WIDTH = 700;
