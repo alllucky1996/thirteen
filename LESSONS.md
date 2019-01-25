@@ -23,6 +23,7 @@ Lessons Learned (Mistakes Were Made):
     * Integer has a built-in static compare method (nice tidbit).
 * JavaFX
     * Resizing requires setting the min/pref/max size
+    * Alignment of pane elements can change layout order
 * JUnit
     * Some documentation for assertions are wrong. The parameters for assertions should be actual then expected.
 * Maven
