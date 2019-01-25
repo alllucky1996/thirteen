@@ -11,13 +11,13 @@ import javafx.scene.text.Text;
 
 public class OpposingHandPane extends Pane implements CardView, ThirteenView {
 
-    private static final double DEFAULT_WIDTH = CARD_WIDTH / 10;
+    private static final double DEFAULT_WIDTH = CARD_WIDTH / 14;
 
-    private static final double DEFAULT_HEIGHT = CARD_HEIGHT / 10;
+    private static final double DEFAULT_HEIGHT = CARD_HEIGHT / 14;
 
-    private static final double DEFAULT_X_POS = DEFAULT_WIDTH / 2;
+    private static final double DEFAULT_X_POS = DEFAULT_WIDTH / 2.5;
 
-    private static final double DEFAULT_Y_POS = CARD_HEIGHT / 8;
+    private static final double DEFAULT_Y_POS = CARD_HEIGHT / 10;
 
     private Text cardNumInfo;
 
@@ -27,7 +27,6 @@ public class OpposingHandPane extends Pane implements CardView, ThirteenView {
         CardID cardBack = new CardID(Rank.BACK, Suit.BACK);
         cardNumInfo = new Text();
         cardNumInfo.setText(hand.size() + " CARDS");
-        cardNumInfo.setLayoutX(DEFAULT_X_POS * (hand.size() - 1) / 2);
         cardNumInfo.setLayoutY(DEFAULT_Y_POS);
         cardNumInfo.setVisible(false);
         children.add(cardNumInfo);
