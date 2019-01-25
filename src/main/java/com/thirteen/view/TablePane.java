@@ -15,15 +15,15 @@ public class TablePane extends Pane {
             getChildren().add(handPanes[count]);
             switch (count) {
                 case 0:
-                    handPanes[count].setLayoutX(600);
+                    handPanes[count].setLayoutX(400);
                     handPanes[count].setLayoutY(50);
                     break;
                 case 1:
-                    handPanes[count].setLayoutX(200);
+                    handPanes[count].setLayoutX(100);
                     handPanes[count].setLayoutY(150);
                     break;
                 case 2:
-                    handPanes[count].setLayoutX(1000);
+                    handPanes[count].setLayoutX(700);
                     handPanes[count].setLayoutY(150);
                     break;
             }
