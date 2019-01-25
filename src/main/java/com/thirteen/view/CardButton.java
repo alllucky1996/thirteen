@@ -60,35 +60,43 @@ public class CardButton extends ToggleButton implements CardView {
         setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                imageView.setFitWidth(HOVER_WIDTH);
-                imageView.setFitHeight(HOVER_HEIGHT);
+                setImageViewFitSize(HOVER_WIDTH, HOVER_HEIGHT);
             }
         });
         setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (isSelected()) {
-                    imageView.setFitWidth(SELECT_WIDTH);
-                    imageView.setFitHeight(SELECT_HEIGHT);
-                } else {
-                    imageView.setFitWidth(DEFAULT_WIDTH);
-                    imageView.setFitHeight(DEFAULT_HEIGHT);
-                }
+                changeImageViewSizeDependingOnToggle();
             }
         });
         setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (!isSelected()) {
-                    imageView.setFitWidth(DEFAULT_WIDTH);
-                    imageView.setFitHeight(DEFAULT_HEIGHT);
-                }
-                if (isSelected()) {
-                    imageView.setFitWidth(SELECT_WIDTH);
-                    imageView.setFitHeight(SELECT_HEIGHT);
-                }
+                changeImageViewSizeDependingOnToggle();
             }
         });
+    }
+
+    /**
+     * Change the image view size depending on the toggle button's select
+     * property.
+     */
+    private void changeImageViewSizeDependingOnToggle() {
+        if (isSelected()) {
+            setImageViewFitSize(SELECT_WIDTH, SELECT_HEIGHT);
+        } else {
+            setImageViewFitSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        }
+    }
+
+    /**
+     * Set the image view fit size to the specified width and height.
+     * @param width     Width to set to
+     * @param height    Height to set to
+     */
+    private void setImageViewFitSize(double width, double height) {
+        imageView.setFitWidth(width);
+        imageView.setFitHeight(height);
     }
 
 }
