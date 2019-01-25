@@ -12,24 +12,45 @@ import javafx.scene.text.Text;
 import java.util.Optional;
 
 /**
- * TODO: document
+ * A grid pane used to represent the player UI. The player UI
+ * allows the cards in hand to be interacted with given it is their turn.
+ *
+ * @author Michael Kha
  */
 public class PlayerPane extends GridPane implements ThirteenView {
 
+    /**
+     * Strings used to represent the state of the game to be shown
+     */
     private static final String PLAYER_TURN = "%s's Turn";
     private static final String WAITING = "Waiting...";
+
+    /**
+     * Strings used to represent the move state.
+     */
     private static final String MAKE_MOVE = "Make a Move!";
     private static final String VALID_MOVE = "Valid Move.";
     private static final String INVALID_MOVE = "Invalid Move.";
 
+    /**
+     * The turn text to display the state of the game.
+     */
     private final Text turn;
+
+    /**
+     * The indicator text to display the move state.
+     */
     private final Text indicator;
 
-    PlayerPane(String player) {
+    /**
+     * Create a player pane given a player name.
+     * @param playerName    The name of the player to display
+     */
+    PlayerPane(String playerName) {
         // TODO: change text depending on game state
         // text about whose turn it is: "NAME's Turn"
         turn = new Text();
-        turn.setText(String.format(PLAYER_TURN, player));
+        turn.setText(String.format(PLAYER_TURN, playerName));
 
         // style text
         //turn.setStyle();
@@ -68,7 +89,7 @@ public class PlayerPane extends GridPane implements ThirteenView {
             @Override
             public void handle(MouseEvent event) {
                 // if move is pass
-            //    showAlert();
+            //    showPassAlert();
                 // otherwise submit
 
             }
@@ -81,20 +102,26 @@ public class PlayerPane extends GridPane implements ThirteenView {
         add(turn, 0, 0);
         add(indicator, 0, 1);
         add(buttons, 0, 2);
-        //add(makeMove, 0, 2);
-        //add(undoMove, 1, 2);
-        //add(endTurn, 0, 3);
         setPadding(DEFAULT_INSETS);
     }
 
+    /**
+     * Create a button that is initially disabled.
+     * @param text  Text on the button to display
+     * @return  A formatted button
+     */
     private Button createButton(String text) {
         Button button = new Button(text);
         // TODO: add observers to enable buttons
-        //button.setDisable(true);
+        button.setDisable(true);
         return button;
     }
 
-    private void showAlert() {
+    /**
+     * TODO: use pass alert
+     * Show a warning alert about making a passing move.
+     */
+    private void showPassAlert() {
         // if move is empty: display pass move warning through an alert
         // alert asks "Are you sure?" in the prompt and in the body
         // "You are about to submit a passing move."
