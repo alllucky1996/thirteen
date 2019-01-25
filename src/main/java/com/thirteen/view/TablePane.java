@@ -5,7 +5,6 @@ import javafx.scene.layout.Pane;
 
 public class TablePane extends Pane {
 
-    // TODO: change to different pane/layout
     TablePane(Hand... hands) {
         OpposingHandPane[] handPanes = new OpposingHandPane[hands.length];
         for (int i = 0; i < hands.length; i++) {
@@ -16,22 +15,16 @@ public class TablePane extends Pane {
             getChildren().add(handPanes[count]);
             switch (count) {
                 case 0:
-                    handPanes[count].setLayoutX(0);
-                    handPanes[count].setLayoutY(200);
-                    //setCenter(handPanes[count]);
-                    //setAlignment(handPanes[count], Pos.BOTTOM_CENTER);
+                    handPanes[count].setLayoutX(600);
+                    handPanes[count].setLayoutY(50);
                     break;
                 case 1:
-                    handPanes[count].setLayoutX(-100);
-                    handPanes[count].setLayoutY(300);
-                    //setLeft(handPanes[count]);
-                    //setAlignment(handPanes[count], Pos.BOTTOM_RIGHT);
+                    handPanes[count].setLayoutX(200);
+                    handPanes[count].setLayoutY(150);
                     break;
                 case 2:
-                    handPanes[count].setLayoutX(100);
-                    handPanes[count].setLayoutY(300);
-                    //setRight(handPanes[count]);
-                    //setAlignment(handPanes[count], Pos.BOTTOM_LEFT);
+                    handPanes[count].setLayoutX(1000);
+                    handPanes[count].setLayoutY(150);
                     break;
             }
             count++;
