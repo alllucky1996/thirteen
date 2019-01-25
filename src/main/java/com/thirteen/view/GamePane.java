@@ -11,27 +11,33 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class GamePane extends BorderPane implements CardView {
+public class GamePane extends BorderPane implements CardView, ThirteenView {
 
     GamePane() {
         // Set up the bottom of the game pane: displaying cards in hand and UI
-        BorderPane bottom = new BorderPane();
+        HBox bottom = new HBox();
         // The player's hand showing their cards
         HBox handPane = new HandPane(createHand());
-        ThirteenView.setDefSize(handPane, CARD_WIDTH / 5 * 13, CARD_HEIGHT / 5);
-        handPane.setAlignment(Pos.BOTTOM_LEFT);
+        ThirteenView.setDefSize(handPane, CARD_WIDTH / 10 * 12 + CARD_WIDTH / 6, CARD_HEIGHT / 6);
+        handPane.setAlignment(Pos.BOTTOM_RIGHT);
         // The player's user interface
         GridPane playerPane = new PlayerPane("A name!");
         playerPane.setAlignment(Pos.BOTTOM_RIGHT);
-        // Set the left and right of the bottom pane
-        bottom.setLeft(handPane);
-        bottom.setRight(playerPane);
+        // Set the left and center of the bottom pane
+        bottom.getChildren().addAll(handPane, playerPane);
+        // Align bottom toward the center right
+        bottom.setAlignment(Pos.CENTER_RIGHT);
         // Add to the bottom of the game pane
         setBottom(bottom);
 
         // Set up the center of the game pane: displaying opponent hands
         Pane tablePane = new TablePane(createHand(), createHand(), createHand());
+        // Add to the center of the game pane
         setCenter(tablePane);
+
+        // TODO: add right UI pane
+
+        setBackground(LIGHT_GREEN_BACKGROUND);
 
     }
 
