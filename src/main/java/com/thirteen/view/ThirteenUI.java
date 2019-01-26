@@ -5,6 +5,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 /**
  * The application representing the graphical user interface
  * for the game of thirteen.
@@ -24,10 +26,12 @@ public class ThirteenUI extends Application {
 
     /**
      * Create the content for the scene.
+     * @param playerName    The name of the player
      * @return  Parent node populated with content
      */
-    private Parent createContent() {
-        return new GamePane();
+    private Parent createContent(String playerName) {
+        // TODO: use controller to give GamePane the hands
+        return new GamePane(playerName);
     }
 
     /**
@@ -39,9 +43,21 @@ public class ThirteenUI extends Application {
     public void start(Stage stage) {
         // Take in player name
         Parameters parameters = getParameters();
+        List<String> args = parameters.getRaw();
+        if (args.size() == 0) {
+            System.out.println("usage: ThirteenUI name");
+            System.exit(1);
+        }
+        // Build name
+        String playerName = "";
+        for (String s : args) {
+            playerName += s;
+            playerName += ' ';
+        }
+        // TODO: Evaluate name to be valid
 
         // Build scene
-        Parent parent = createContent();
+        Parent parent = createContent(playerName);
         Scene scene = new Scene(parent);
 
         // Setup stage
