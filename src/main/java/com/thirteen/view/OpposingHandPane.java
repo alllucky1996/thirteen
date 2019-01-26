@@ -20,8 +20,6 @@ public class OpposingHandPane extends Pane implements CardView, ThirteenView {
 
     private static final double DEFAULT_X_POS = DEFAULT_WIDTH / 2.5;
 
-    private static final double DEFAULT_Y_POS = CARD_HEIGHT / 10;
-
     private Text cardNumInfo;
 
     // TODO: change to hand size parameter?
@@ -30,7 +28,7 @@ public class OpposingHandPane extends Pane implements CardView, ThirteenView {
         CardID cardBack = new CardID(Rank.BACK, Suit.BACK);
         cardNumInfo = new Text();
         cardNumInfo.setText(hand.size() + " CARDS");
-        cardNumInfo.setLayoutY(DEFAULT_Y_POS);
+        cardNumInfo.setLayoutY(-5);
         cardNumInfo.setVisible(false);
         children.add(cardNumInfo);
         for (int i = 0; i < hand.size(); i++) {
