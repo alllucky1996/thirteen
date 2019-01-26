@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 
 /**
  * TODO: document
@@ -12,11 +13,13 @@ public interface ThirteenView {
 
     Insets DEFAULT_INSETS = new Insets(15);
 
-    String BACKGROUND_LOCATION = "file:src/main/resources/img/background.png";
+    String IMAGE_LOCATION = "file:src/main/resources/img/";
 
-    Background DEFAULT_BACKGROUND =
+    ImagePattern TABLE = new ImagePattern(new Image(IMAGE_LOCATION + "table-texture.jpg"));
+
+    Background TABLE_BACKGROUND =
             new Background(new BackgroundImage(
-            new Image(BACKGROUND_LOCATION), BackgroundRepeat.NO_REPEAT,
+            new Image(IMAGE_LOCATION + "table-texture.jpg"), BackgroundRepeat.NO_REPEAT,
             BackgroundRepeat.NO_REPEAT, null, null));
 
     Background LIGHT_GREEN_BACKGROUND =
