@@ -24,6 +24,8 @@ Lessons Learned (Mistakes Were Made):
 * JavaFX
     * Resizing requires setting the min/pref/max size
     * Alignment of pane elements can change layout order
+    * Attempts at fixing compatibility issues with Java 11 and JavaFX 11 has led me to try changing my path variables,
+      adding the JavaFX library directly, and using vm options with no success.
 * JUnit
     * Some documentation for assertions are wrong. The parameters for assertions should be actual then expected.
 * Maven
