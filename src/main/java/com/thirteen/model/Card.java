@@ -103,6 +103,16 @@ public class Card implements Comparable<Card> {
     }
 
     /**
+     * Get the hash code value of the card. The value is
+     * determined by the suit and rank.
+     * @return  The hash code value
+     */
+    @Override
+    public int hashCode() {
+        return suit.hashCode() + rank.hashCode() * 31;
+    }
+
+    /**
      * Compare this card to another card. First compare the ranks
      * and if the ranks are equal, then compare the suits.
      * @param other Other card to compare with
