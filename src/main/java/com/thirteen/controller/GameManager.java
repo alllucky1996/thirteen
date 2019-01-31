@@ -3,14 +3,14 @@ package com.thirteen.controller;
 import com.thirteen.model.Game;
 
 /**
- * Manages the state of the game
+ * Manages the state of the game.
  *
  * @author Michael Kha
  */
 public class GameManager {
 
     /**
-     * Game to be managed.
+     * Game to be managed
      */
     private Game game;
 
@@ -21,7 +21,7 @@ public class GameManager {
 
     /**
      * Creates a game manager that controls the game through input.
-     * @param game
+     * @param game  Game to manage
      */
     public GameManager(Game game) {
         this.game = game;
@@ -37,7 +37,7 @@ public class GameManager {
     }
 
     /**
-     * Start the game
+     * Start the game.
      */
     public void start() {
         game.start();
