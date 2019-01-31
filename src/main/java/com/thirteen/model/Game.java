@@ -49,10 +49,22 @@ public class Game extends WinnerTool {
         deck = new Deck(new Stack<>());
         players = new ArrayList<>();
         rounds = new ArrayList<>();
-        for (int i=0; i<numPlayers; i++) {
+        for (int i = 0; i < numPlayers; i++) {
             players.add(new Player());
         }
     }
+
+    /**
+     * Create a new game from given players.
+     * Number of players must be 2-4.
+     * @param players   2-4 players
+     */
+    public Game(List<Player> players) {
+        deck = new Deck(new Stack<>());
+        this.players = players;
+        rounds = new ArrayList<>();
+    }
+
 
     /**
      * TODO: called by controller
