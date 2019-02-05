@@ -43,6 +43,15 @@ public class Move extends CardHolder implements Comparable<Move> {
     }
 
     /**
+     * Check if the move is a type of play.
+     * @param play  Play to compare with
+     * @return If this play is equal to the given play
+     */
+    public boolean isPlay(Play play) {
+        return this.play == play;
+    }
+
+    /**
      * Get the highest value card in the move.
      * @return  The highestValued value card
      */
