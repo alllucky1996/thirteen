@@ -10,6 +10,8 @@ will turn into a web application.
 Please read the contributing file for information about how to contribute.
 
 ## Installation
+```
 Install Java, add to path
 Install Maven, add to path
 Install Git, add to path
+```
