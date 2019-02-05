@@ -1,6 +1,7 @@
 package com.thirteen.controller;
 
 import com.thirteen.model.Game;
+import com.thirteen.model.Pile;
 
 /**
  * Manages the state of the game.
@@ -29,17 +30,10 @@ public class GameManager {
     }
 
     /**
-     * Initialize the game.
-     */
-    public void init() {
-        game.init();
-        state = GameState.STARTING;
-    }
-
-    /**
-     * Start the game.
+     * Initialize the game by first shuffling deck and then dealing.
      */
     public void start() {
+        game.shuffleDeck();
         game.start();
         state = GameState.IN_PROGRESS;
     }
@@ -50,6 +44,22 @@ public class GameManager {
      */
     public GameState getState() {
         return state;
+    }
+
+    /**
+     * Get the discard pile of the game.
+     * @return  The discard pile
+     */
+    public Pile getDiscardPile() {
+        return game.getDiscardPile();
+    }
+
+    /**
+     * Check if the game is over.
+     * @return  Game is over or not
+     */
+    public boolean isGameOver() {
+        return game.isGameOver();
     }
 
 }
