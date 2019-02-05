@@ -32,9 +32,9 @@ public class RoundTest {
     @BeforeEach
     public void setup() {
         game = new Game(4);
-        game.init();
+        game.start();
         move = new Move(new ArrayList<>());
-        CuT = game.createRound();
+        CuT = game.getCurrentRound();
         //CuT = new Round(game.getPlayers(), new ArrayList<>(), game.getCurrentPlayer());
     }
 
