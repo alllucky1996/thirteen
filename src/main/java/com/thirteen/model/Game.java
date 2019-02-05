@@ -30,10 +30,9 @@ public class Game extends WinnerTool {
     private List<Round> rounds;
 
     /**
-     * TODO: remove: responsibility delegated elsewhere
-     * Current player whose turn it is
+     * Pile that holds played cards
      */
-    private Player currentPlayer;
+    private Pile discardPile;
 
     /**
      * TODO: remove field
@@ -49,6 +48,7 @@ public class Game extends WinnerTool {
         deck = new Deck(new Stack<>());
         players = new ArrayList<>();
         rounds = new ArrayList<>();
+        discardPile = new Pile(new Stack<>());
         for (int i = 0; i < numPlayers; i++) {
             players.add(new Player());
         }
@@ -65,6 +65,26 @@ public class Game extends WinnerTool {
         rounds = new ArrayList<>();
     }
 
+    /**
+     * Reset the game to a new game using the discard pile.
+     */
+    public void reset() {
+        if (isGameOver()) {
+            // Clear all hands
+            for (Player player : players) {
+                if (!player.isHandEmpty()) {
+                    discardPile.addAll(player.getCardsInHand());
+                    player.clearHand();
+                }
+            }
+            // Add cards back from discard pile
+            deck.addAll(discardPile);
+            // Reset discard pile
+            discardPile.clear();
+            // Start the game over
+            start();
+        }
+    }
 
     /**
      * TODO: called by controller
@@ -73,31 +93,18 @@ public class Game extends WinnerTool {
      * a Three of Spades or the lowest value card (when there are less
      * than four players).
      */
-    public void init() {
-        // Currently hard coded for 4 players only
+    public void start() {
+        Player starting = players.get(0);
         while (!players.get(0).isHandFull()) {
             for (Player player : players) {
-                Card card = dealFromDeck();
+                Card card = deck.dealACard();
                 if (card.isRankAndSuit(Rank.THREE, Suit.SPADES)) {
-                    currentPlayer = player;
+                    starting = player;
                 }
                 player.addToHand(card);
             }
         }
-        // TODO: Deck should be empty (test this)
-    }
-
-    /**
-     *
-     *
-     */
-    public void start() {
-        Round round;
-        while (!hasWinner()) {
-            // Start a new round
-            round = new Round(players, new ArrayList<>(), currentPlayer);
-            rounds.add(round);
-        }
+        rounds.add(createRound(starting));
     }
 
     /**
@@ -105,33 +112,17 @@ public class Game extends WinnerTool {
      * preconditions: current player has been updated
      * @return
      */
-    public Round createRound() {
-        return new Round(players, new ArrayList<>(), currentPlayer);
+    public Round createRound(Player starting) {
+        return new Round(players, new ArrayList<>(), starting);
     }
 
     /**
-     * Update the current player to the last round's winner.
-     * @return  The next current player
+     * Get the current round if it exists.
+     * @return  The current round
      */
-    public Player updateCurrentPlayer() {
-        Round round = getLastRound();
-        currentPlayer = round.getCurrent();
-        currentPlayer = getLastRound().getWinner();
-        return currentPlayer;
-    }
-
-    public Round getLastRound() {
+    public Round getCurrentRound() {
         int size = rounds.size();
         return size == 0 ? null : rounds.get(size - 1);
-    }
-
-    /**
-     * TODO: called by controller
-     * preconditions: deck is not empty; if empty take discard pile and shuffle into deck
-     * @return
-     */
-    public Card dealFromDeck() {
-        return deck.dealACard();
     }
 
     /**
@@ -143,6 +134,7 @@ public class Game extends WinnerTool {
     }
 
     /**
+     * TODO: see if needed
      * Determine if a winner exists by looking at each player's hand
      * and seeing if other players have passed.
      * @return  If a winner can be declared for this round
@@ -164,18 +156,58 @@ public class Game extends WinnerTool {
         return false;
     }
 
+    /**
+     * Determine if the game has reached completion. This is indicated when
+     * only one player still has cards.
+     * @return  If the game is over
+     */
+    public boolean isGameOver() {
+        int count = 0;
+        for (Player player : players) {
+            if (player.isHandEmpty()) {
+                count++;
+            }
+        }
+        return count == players.size() - 1;
+    }
+
+    /**
+     * Get the players in the game.
+     * @return  The players
+     */
     public List<Player> getPlayers() {
         return players;
     }
 
+    /**
+     * TODO: remove?
+     * Get the deck used in the game.
+     * @return  The deck
+     */
     public Deck getDeck() {
         return deck;
     }
 
-    public Player getCurrentPlayer() {
-        return currentPlayer;
+    /**
+     * Get the discard pile.
+     * @return  The discard pile
+     */
+    public Pile getDiscardPile() {
+        return discardPile;
     }
 
+    /**
+     * Get the current player based on the current round.
+     * @return  The current player
+     */
+    public Player getCurrentPlayer() {
+        return getCurrentRound().getCurrent();
+    }
+
+    /**
+     * Get the rounds played in the game.
+     * @return  The rounds that have been played
+     */
     public List<Round> getRounds() {
         return rounds;
     }
