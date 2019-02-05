@@ -1,7 +1,10 @@
 package com.thirteen.controller;
 
+import com.thirteen.model.Card;
 import com.thirteen.model.Game;
 import com.thirteen.model.Pile;
+
+import java.util.List;
 
 /**
  * Manages the state of the game.
@@ -30,10 +33,9 @@ public class GameManager {
     }
 
     /**
-     * Initialize the game by first shuffling deck and then dealing.
+     * Initialize the game by dealing cards to the players.
      */
     public void start() {
-        game.shuffleDeck();
         game.start();
         state = GameState.IN_PROGRESS;
     }
@@ -52,6 +54,15 @@ public class GameManager {
      */
     public Pile getDiscardPile() {
         return game.getDiscardPile();
+    }
+
+    /**
+     * Make a move given a list of cards.
+     * @param cards List of cards
+     * @return If the move was successfully made
+     */
+    public boolean makeMove(List<Card> cards) {
+        return game.makeMove(cards);
     }
 
     /**
