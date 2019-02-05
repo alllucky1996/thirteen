@@ -68,6 +68,14 @@ public class Player {
     }
 
     /**
+     * Get the cards in the player's hand.
+     * @return  The cards being held
+     */
+    public List<Card> getCardsInHand() {
+        return hand.getCards();
+    }
+
+    /**
      * Set passed to the given state.
      * @param passed    State to set to
      */
@@ -97,6 +105,13 @@ public class Player {
      */
     public void removeFromHand(Card card) {
         hand.remove(card);
+    }
+
+    /**
+     * Clear all the cards in the hand.
+     */
+    public void clearHand() {
+        hand.clear();
     }
 
     /**
