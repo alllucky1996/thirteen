@@ -87,13 +87,14 @@ public class Game extends WinnerTool {
     }
 
     /**
-     * TODO: called by controller
+     * First shuffles the deck.
      * Start the game by dealing cards to all players
      * and setting the current player's turn to the person with
      * a Three of Spades or the lowest value card (when there are less
      * than four players).
      */
     public void start() {
+        deck.shuffle();
         Player starting = players.get(0);
         while (!players.get(0).isHandFull()) {
             for (Player player : players) {
@@ -108,12 +109,29 @@ public class Game extends WinnerTool {
     }
 
     /**
-     *
-     * preconditions: current player has been updated
-     * @return
+     * Make a move given a list of cards. A move is created and checked.
+     * A turn is then created for the current round. The round then determines
+     * if the player making the move can legally submit the turn.
+     * @return If the game successfully created a move and added it to the
+     *         round's turn
      */
-    public Round createRound(Player starting) {
-        return new Round(players, new ArrayList<>(), starting);
+    public boolean makeMove(List<Card> cards) {
+        Move move = new Move(cards);
+        if (move.isPlay(Play.ILLEGAL)) {
+            return false;
+        }
+        Round current = getCurrentRound();
+        Turn turn = current.createTurn(move);
+        return current.addTurn(turn);
+    }
+
+    /**
+     * Create a new round using a starting player
+     * @param starting  Starting player of the new round
+     * @return A new round
+     */
+    private Round createRound(Player starting) {
+        return new Round(players, new ArrayList<>(), discardPile, starting);
     }
 
     /**
@@ -123,14 +141,6 @@ public class Game extends WinnerTool {
     public Round getCurrentRound() {
         int size = rounds.size();
         return size == 0 ? null : rounds.get(size - 1);
-    }
-
-    /**
-     * TODO: called by controller
-     * preconditions: start of game or discard pile added to deck
-     */
-    public void shuffleDeck() {
-        deck.shuffle();
     }
 
     /**
