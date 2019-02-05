@@ -1,5 +1,7 @@
 package com.thirteen.model;
 
+import java.util.List;
+
 /**
  * Represents a turn, a move made by a player.
  *
@@ -25,6 +27,15 @@ public class Turn implements Comparable<Turn> {
     public Turn(Player player, Move move) {
         this.player = player;
         this.move = move;
+    }
+
+    /**
+     * TODO: test
+     * Get the cards of the move.
+     * @return The cards used in the move
+     */
+    public List<Card> getCards() {
+        return move.cards;
     }
 
     /**
