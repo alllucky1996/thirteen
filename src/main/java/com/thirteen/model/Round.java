@@ -3,6 +3,7 @@ package com.thirteen.model;
 import java.util.List;
 
 /**
+ * TODO: update tests
  * Represents a round, consisting of a number of turns.
  * A round is a list of turns created upon the first turn of the
  * round being made. The first turn dictates the type of successive plays
@@ -23,6 +24,16 @@ public class Round extends WinnerTool {
     private List<Turn> turns;
 
     /**
+     * Discard pile shared within the game
+     */
+    private Pile discardPile;
+
+    /**
+     * Index of the current player
+     */
+    private int index;
+
+    /**
      * The current player of the round
      */
     private Player current;
@@ -33,9 +44,18 @@ public class Round extends WinnerTool {
      * @param turns     Any empty list
      * @param starter   Starting player
      */
-    public Round(List<Player> players, List<Turn> turns, Player starter) {
+    public Round(List<Player> players, List<Turn> turns, Pile discardPile,
+                 Player starter) {
         this.players = players;
         this.turns = turns;
+        this.discardPile = discardPile;
+        // Update current player index
+        for (int i = 0; i < players.size(); i++) {
+            if (starter == players.get(i)) {
+                index = i;
+                break;
+            }
+        }
         current = starter;
     }
 
@@ -51,9 +71,50 @@ public class Round extends WinnerTool {
     /**
      * Add the specified turn to the list of turns.
      * @param turn  Turn to add
+     * @return If the round added the turn or not
      */
-    public void addTurn(Turn turn) {
+    public boolean addTurn(Turn turn) {
+        // Check last turn to make sure turns are followed
+        Turn lastTurn = getLastTurn();
+        if (lastTurn != null) {
+            // Verify last player was the player who goes before current player
+            if (lastTurn.getPlayer() == players.get(getLastIndex())
+                && turn.getPlayer() == players.get(index)) {
+                submitTurn(turn);
+                return true;
+            }
+            return false;
+        } else {
+            submitTurn(turn);
+            return true;
+        }
+    }
+
+    /**
+     * Submit the turn, updating the turn state, discard pile, and current
+     * index player.
+     * @param turn  Turn to submit
+     */
+    private void submitTurn(Turn turn) {
         turns.add(turn);
+        discardPile.addAll(turn.getCards());
+        updateCurrent();
+    }
+
+    /**
+     * Update the current index and the current player.
+     */
+    private void updateCurrent() {
+        index = index == players.size() - 1 ? 0 : ++index;
+        current = players.get(index);
+    }
+
+    /**
+     * Get the last player index.
+     * @return The last player index
+     */
+    public int getLastIndex() {
+        return index == 0 ? players.size() - 1 : index-1;
     }
 
     /**
