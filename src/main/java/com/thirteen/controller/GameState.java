@@ -11,24 +11,12 @@ public enum GameState {
      */
     WAITING,
     /**
-     * Game initialized
-     */
-    STARTING,
-    /**
-     * Four players still playing
+     * Game now in progress
      */
     IN_PROGRESS,
     /**
-     * Three players still playing
+     * Game over
      */
-    THREE_LEFT,
-    /**
-     * Two players still playing
-     */
-    TWO_LEFT,
-    /**
-     * One player still playing and signifies end of game
-     */
-    ONE_LEFT;
+    GAME_OVER
 
 }

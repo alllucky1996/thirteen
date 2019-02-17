@@ -17,7 +17,7 @@ public class GameStarter {
     /**
      * Used to keep track of games and the controllers managing the games.
      */
-    private Map<Game, GameManager> gameManagement;
+    private Map<Game, GameController> gameManagement;
 
     /**
      * Create a game starter.
@@ -36,8 +36,8 @@ public class GameStarter {
             throw new GameException("illegal number of players");
         }
         Game game = new Game(players);
-        GameManager gameManager = new GameManager(game);
-        gameManagement.put(game, gameManager);
+        GameController gameController = new GameController(game);
+        gameManagement.put(game, gameController);
         return game;
     }
 

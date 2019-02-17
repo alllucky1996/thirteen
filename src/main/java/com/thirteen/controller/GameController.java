@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Michael Kha
  */
-public class GameManager {
+public class GameController {
 
     /**
      * Game to be managed
@@ -27,7 +27,7 @@ public class GameManager {
      * Creates a game manager that controls the game through input.
      * @param game  Game to manage
      */
-    public GameManager(Game game) {
+    public GameController(Game game) {
         this.game = game;
         state = GameState.WAITING;
     }
@@ -70,7 +70,11 @@ public class GameManager {
      * @return  Game is over or not
      */
     public boolean isGameOver() {
-        return game.isGameOver();
+        if (game.isGameOver()) {
+            state = GameState.GAME_OVER;
+            return true;
+        }
+        return false;
     }
 
 }
